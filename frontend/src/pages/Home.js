@@ -25,7 +25,7 @@ export default function Home() {
       <QuickInfo />
 
       {/* About */}
-      <section className="px-5 sm:px-10 py-12 md:py-16">
+      <section className="px-5 sm:px-10 py-12 md:py-16 bg-cyan-50">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-7xl mx-auto">
           <div className="rounded-[20px] overflow-hidden order-2 lg:order-1">
             <div className="w-full h-[240px] md:h-[340px] bg-gradient-to-br from-lightbg to-[#B0D8ED] rounded-[20px] flex items-center justify-center relative">
@@ -34,10 +34,6 @@ export default function Home() {
                 <path d="M60 30v60M30 60h60" stroke="#00B4D8" strokeWidth="4" strokeLinecap="round" />
                 <circle cx="60" cy="60" r="28" stroke="#0077B6" strokeWidth="6" strokeOpacity="0.15" />
               </svg>
-              <div className="absolute bottom-5 left-5 bg-white rounded-xl px-4.5 py-3.5 shadow-lg">
-                <div className="font-display text-2xl font-extrabold text-mid">100+</div>
-                <div className="text-xs text-textmuted">Team Members</div>
-              </div>
             </div>
           </div>
           <div className="order-1 lg:order-2">

@@ -17,10 +17,11 @@ module.exports = {
         sectionbg: '#F5FBFD',
         footerbg: '#071E36',
       },
+
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['Syne', 'sans-serif'],
-        playfair: ['"Playfair Display"', 'serif'], // 👈 yeh add karo
+        display: ['Inter', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
       },
     },
   },

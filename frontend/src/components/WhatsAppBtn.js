@@ -3,7 +3,7 @@ import React from 'react';
 export default function WhatsAppBtn() {
   return (
     <a
-      href="https://wa.me/918851248073"
+      href="https://wa.me/919680699836"
       target="_blank"
       rel="noreferrer"
       title="Chat on WhatsApp"

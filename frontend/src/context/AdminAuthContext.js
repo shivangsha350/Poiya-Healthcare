@@ -5,7 +5,7 @@ const AdminAuthContext = createContext();
 
 // Create configured axios instance
 export const api = axios.create({
-  baseURL: 'https://your-backend.onrender.com',
+  baseURL: 'https://poiya-healthcare.onrender.com',
 });
 
 export const AdminAuthProvider = ({ children }) => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL, BACKEND_URL } from '../config';
 
 export default function ProductDetails() {
   const { slug } = useParams();
@@ -25,7 +26,7 @@ export default function ProductDetails() {
       try {
         setLoading(true);
         setError('');
-        const res = await axios.get(`http://localhost:5000/api/products/${slug}`);
+        const res = await axios.get(`${API_BASE_URL}/products/${slug}`);
         if (res.data.success) {
           const prod = res.data.product;
           setProduct(prod);
@@ -33,7 +34,7 @@ export default function ProductDetails() {
           
           // Set initial active image
           const defaultImg = prod.thumbnail && prod.thumbnail !== '/uploads/default-product.png'
-            ? `http://localhost:5000${prod.thumbnail}`
+            ? `${BACKEND_URL}${prod.thumbnail}`
             : '/logo.png';
           setActiveImage(defaultImg);
         }
@@ -66,7 +67,7 @@ export default function ProductDetails() {
         ...inquiryData,
         product: product.name,
       };
-      const res = await axios.post('http://localhost:5000/api/messages', payload);
+      const res = await axios.post(`${API_BASE_URL}/messages`, payload);
       if (res.data.success) {
         setSubmitSuccess(true);
         setInquiryData({ name: '', email: '', phone: '', message: '' });
@@ -106,9 +107,9 @@ export default function ProductDetails() {
   // Gallery image helper
   const allImages = [
     product.thumbnail && product.thumbnail !== '/uploads/default-product.png'
-      ? `http://localhost:5000${product.thumbnail}`
+      ? `${BACKEND_URL}${product.thumbnail}`
       : '/logo.png',
-    ...(product.gallery || []).map(img => `http://localhost:5000${img}`)
+    ...(product.gallery || []).map(img => `${BACKEND_URL}${img}`)
   ].filter(Boolean);
 
   return (
@@ -229,7 +230,7 @@ export default function ProductDetails() {
                   <p className="text-xs text-[#CAF0F8] mt-1">Download complete technical parameters and safety compliance PDF sheet.</p>
                 </div>
                 <a
-                  href={`http://localhost:5000${product.brochureUrl}`}
+                  href={`${BACKEND_URL}${product.brochureUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-white text-mid py-3 rounded-xl font-bold text-sm block text-center shadow-md hover:bg-slate-50 transition cursor-pointer"
@@ -344,7 +345,7 @@ export default function ProductDetails() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {related.map((prod) => {
               const displayImage = prod.thumbnail && prod.thumbnail !== '/uploads/default-product.png'
-                ? `http://localhost:5000${prod.thumbnail}`
+                ? `${BACKEND_URL}${prod.thumbnail}`
                 : null;
               return (
                 <div key={prod._id} className="border border-slate-200/80 rounded-2xl p-5 bg-white flex flex-col justify-between hover:shadow-lg transition">

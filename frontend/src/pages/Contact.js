@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { motion, useReducedMotion } from 'framer-motion';
+import { API_BASE_URL } from '../config';
 import contactHeroImg from '../Assets/ContactHero.png';
 
 const cards = [
@@ -76,7 +77,7 @@ export default function Contact() {
         subject: form.product ? `Enquiry for ${form.product}` : 'General Contact Enquiry',
       };
 
-      const res = await axios.post('http://localhost:5000/api/messages', payload);
+      const res = await axios.post(`${API_BASE_URL}/messages`, payload);
       if (res.data.success) {
         setSubmitted(true);
         setForm(INIT_FORM);

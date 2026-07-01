@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { BACKEND_URL } from '../config';
 
 export default function ProductCard({ icon, image, name, slug, _id, index = 0 }) {
-  const displayImage = image && image !== '/uploads/default-product.png' ? `http://localhost:5000${image}` : null;
+  const displayImage = image && image !== '/uploads/default-product.png' ? `${BACKEND_URL}${image}` : null;
 
   const cardRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);

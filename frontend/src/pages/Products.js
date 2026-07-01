@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { API_BASE_URL } from '../config';
 import ProductCard from '../components/ProductCard';
 import ProductHeroImg from '../Assets/ProductHero.png';
 
@@ -53,8 +54,8 @@ export default function Products() {
       try {
         setLoading(true);
         const [prodRes, catRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/products?limit=100'),
-          axios.get('http://localhost:5000/api/categories'),
+          axios.get(`${API_BASE_URL}/products?limit=100`),
+          axios.get(`${API_BASE_URL}/categories`),
         ]);
 
         if (prodRes.data.success) {

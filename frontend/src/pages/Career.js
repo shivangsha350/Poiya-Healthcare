@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion, useReducedMotion } from 'framer-motion';
+import { API_BASE_URL } from '../config';
 import CareerHeroImg from '../Assets/CareerHero.png';
 
 const perks = [
@@ -54,7 +55,7 @@ export default function Career() {
     const fetchOpenings = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('http://localhost:5000/api/jobs');
+        const res = await axios.get(`${API_BASE_URL}/jobs`);
         if (res.data.success) {
           setOpenings(res.data.jobs || []);
         }
@@ -104,7 +105,7 @@ export default function Career() {
       payload.append('coverLetter', form.motivation || '');
       payload.append('resume', resumeFile);
 
-      const res = await axios.post('http://localhost:5000/api/careers/apply', payload, {
+      const res = await axios.post(`${API_BASE_URL}/careers/apply`, payload, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

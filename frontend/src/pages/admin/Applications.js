@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api, useAdminAuth } from '../../context/AdminAuthContext';
+import { BACKEND_URL } from '../../config';
 
 export default function Applications() {
   const { showToast } = useAdminAuth();
@@ -257,7 +258,7 @@ export default function Applications() {
                         </button>
                         {/* Resume Download */}
                         <a
-                          href={`http://localhost:5000${app.resumeUrl}`}
+                          href={`${BACKEND_URL}${app.resumeUrl}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500 text-emerald-500 hover:text-white transition duration-200 flex items-center justify-center"
@@ -393,7 +394,7 @@ export default function Applications() {
                   Delete Application
                 </button>
                 <a
-                  href={`http://localhost:5000${selectedApp.resumeUrl}`}
+                  href={`${BACKEND_URL}${selectedApp.resumeUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition inline-flex items-center gap-1.5"

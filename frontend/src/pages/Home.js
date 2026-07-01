@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../config";
 import Hero from "../components/Hero";
 import QuickInfo from "../components/QuickInfo";
 import StatsBand from "../components/StatsBand";
@@ -101,7 +102,7 @@ export default function Home() {
   useEffect(() => {
     const fetchHomeProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products?limit=10");
+        const res = await axios.get(`${API_BASE_URL}/products?limit=10`);
         if (res.data.success && res.data.products && res.data.products.length > 0) {
           setDisplayProducts(res.data.products);
         } else {

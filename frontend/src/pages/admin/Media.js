@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api, useAdminAuth } from '../../context/AdminAuthContext';
+import { BACKEND_URL } from '../../config';
 
 export default function Media() {
   const { showToast } = useAdminAuth();
@@ -261,7 +262,7 @@ export default function Media() {
                   <div className="w-full aspect-[4/3] bg-slate-50 dark:bg-slate-900/10 flex items-center justify-center overflow-hidden border-b border-[#d0e8f5]/30 dark:border-slate-850">
                     {item.fileType === 'image' ? (
                       <img
-                        src={`http://localhost:5000${item.url}`}
+                        src={`${BACKEND_URL}${item.url}`}
                         alt={item.filename}
                         className="max-h-full max-w-full object-contain p-2"
                       />

@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 const AdminAuthContext = createContext();
 
 // Create configured axios instance
 export const api = axios.create({
-  baseURL: 'https://poiya-healthcare.onrender.com/api',
+  baseURL: API_BASE_URL,
 });
 
 export const AdminAuthProvider = ({ children }) => {

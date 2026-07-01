@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api, useAdminAuth } from '../../context/AdminAuthContext';
+import { BACKEND_URL } from '../../config';
 
 export default function Seo() {
   const { showToast } = useAdminAuth();
@@ -63,7 +64,7 @@ export default function Seo() {
     });
     
     setOgImageFile(null);
-    setOgImagePreview(match && match.ogImage ? `http://localhost:5000${match.ogImage}` : null);
+    setOgImagePreview(match && match.ogImage ? `${BACKEND_URL}${match.ogImage}` : null);
     setModalOpen(true);
   };
 

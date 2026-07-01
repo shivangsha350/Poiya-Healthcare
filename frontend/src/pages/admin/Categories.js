@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api, useAdminAuth } from '../../context/AdminAuthContext';
+import { BACKEND_URL } from '../../config';
 
 export default function Categories() {
   const { showToast } = useAdminAuth();
@@ -54,7 +55,7 @@ export default function Categories() {
     setDescription(cat.description || '');
     setStatus(cat.status || 'Active');
     setImageFile(null);
-    setImagePreview(cat.image ? `http://localhost:5000${cat.image}` : null);
+    setImagePreview(cat.image ? `${BACKEND_URL}${cat.image}` : null);
     setModalOpen(true);
   };
 
@@ -216,7 +217,7 @@ export default function Categories() {
                     
                     {/* Cover thumbnail */}
                     <img
-                      src={cat.image ? `http://localhost:5000${cat.image}` : '/logo.png'}
+                      src={cat.image ? `${BACKEND_URL}${cat.image}` : '/logo.png'}
                       alt={cat.name}
                       onError={(e) => { e.target.src = '/logo.png'; }}
                       className="w-10 h-10 rounded-xl object-cover border border-[#d0e8f5]/40 dark:border-slate-800 bg-white"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api, useAdminAuth } from '../../context/AdminAuthContext';
+import { BACKEND_URL } from '../../config';
 
 export default function Settings() {
   const { showToast } = useAdminAuth();
@@ -43,7 +44,7 @@ export default function Settings() {
             linkedin: s.socialLinks?.linkedin || '',
             instagram: s.socialLinks?.instagram || '',
           });
-          setLogoPreview(s.logo ? `http://localhost:5000${s.logo}` : null);
+          setLogoPreview(s.logo ? `${BACKEND_URL}${s.logo}` : null);
         }
       } catch (err) {
         console.error('Error loading settings:', err);
@@ -93,7 +94,7 @@ export default function Settings() {
       if (res.data.success) {
         showToast('Website configurations saved successfully', 'success');
         if (res.data.settings?.logo) {
-          setLogoPreview(`http://localhost:5000${res.data.settings.logo}`);
+          setLogoPreview(`${BACKEND_URL}${res.data.settings.logo}`);
         }
       }
     } catch (err) {

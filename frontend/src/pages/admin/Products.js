@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api, useAdminAuth } from '../../context/AdminAuthContext';
+import { BACKEND_URL } from '../../config';
 
 export default function Products() {
   const { showToast } = useAdminAuth();
@@ -214,7 +215,7 @@ export default function Products() {
       : [{ name: '', value: '', order: 0 }]);
     setFeatures(product.keyFeatures && product.keyFeatures.length > 0 ? [...product.keyFeatures] : ['']);
     setThumbnailFile(null);
-    setThumbnailPreview(product.thumbnail ? `http://localhost:5000${product.thumbnail}` : null);
+    setThumbnailPreview(product.thumbnail ? `${BACKEND_URL}${product.thumbnail}` : null);
     setBrochureFile(null);
     setBrochureName(product.brochureUrl ? 'Current Brochure PDF' : '');
     setGalleryFiles([]);
@@ -410,7 +411,7 @@ export default function Products() {
                     <td className="p-5 min-w-[280px]">
                       <div className="flex items-center gap-4">
                         <img
-                          src={product.thumbnail ? `http://localhost:5000${product.thumbnail}` : '/logo.png'}
+                          src={product.thumbnail ? `${BACKEND_URL}${product.thumbnail}` : '/logo.png'}
                           alt={product.name}
                           onError={(e) => { e.target.src = '/logo.png'; }}
                           className="w-12 h-12 rounded-xl object-cover border border-[#d0e8f5]/30 dark:border-slate-800 bg-white"
@@ -742,7 +743,7 @@ export default function Products() {
                       {/* Existing image items */}
                       {existingGallery.map((img, i) => (
                         <div key={`exist-${i}`} className="relative w-16 h-16 rounded-xl overflow-hidden border border-slate-100 bg-slate-50">
-                          <img src={`http://localhost:5000${img}`} alt="Exist preview" className="w-full h-full object-cover" />
+                          <img src={`${BACKEND_URL}${img}`} alt="Exist preview" className="w-full h-full object-cover" />
                           <button
                             type="button"
                             onClick={() => handleRemoveExistingGallery(img)}

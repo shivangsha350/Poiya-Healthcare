@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api, useAdminAuth } from '../../context/AdminAuthContext';
+import { BACKEND_URL } from '../../config';
 
 export default function Orders() {
   const { showToast } = useAdminAuth();
@@ -324,7 +325,7 @@ export default function Orders() {
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <img
-                            src={prod.image ? `http://localhost:5000${prod.image}` : '/uploads/default-product.png'}
+                            src={prod.image ? `${BACKEND_URL}${prod.image}` : '/uploads/default-product.png'}
                             alt={prod.name}
                             onError={(e) => { e.target.src = '/logo.png'; }}
                             className="w-10 h-10 rounded-lg object-cover border border-slate-200 dark:border-slate-800 bg-white"

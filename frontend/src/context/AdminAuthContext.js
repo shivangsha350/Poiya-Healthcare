@@ -5,7 +5,7 @@ const AdminAuthContext = createContext();
 
 // Create configured axios instance
 export const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://your-backend.onrender.com',
 });
 
 export const AdminAuthProvider = ({ children }) => {

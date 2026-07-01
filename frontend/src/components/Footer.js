@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import productIcon from "../Assets/Logo.png";
 
 export default function Footer() {
   return (
@@ -8,13 +9,15 @@ export default function Footer() {
         {/* Brand */}
         <div className="sm:col-span-2 lg:col-span-1">
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-[38px] h-[38px] bg-gradient-to-br from-mid to-accent rounded-[9px] flex items-center justify-center">
-              <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5">
-                <path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c.55 0 1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V7c0-.55.45-1 1-1z" />
-              </svg>
+            <div className="w-[38px] h-[38px] rounded-[9px] overflow-hidden flex items-center justify-center">
+              <img
+                src={productIcon}
+                alt="Product Icon"
+                className="w-full h-full object-cover"
+              />
             </div>
             <span className="font-display text-xl font-extrabold text-white">
-              Medi<span className="text-accent">Vision</span>
+              Poiya<span className="text-accent">Healthcare</span>
             </span>
           </Link>
           <p className="text-[13px] text-[#7BA0B8] leading-relaxed my-3.5 max-w-[280px]">
@@ -81,15 +84,14 @@ export default function Footer() {
             <li><Link to="/terms" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Terms & Conditions</Link></li>
           </ul>
           <div className="mt-5 flex flex-col gap-1.5">
-            <p className="text-xs text-[#4A6580] leading-snug">📍 B-83, Mangolpuri Industrial Area, Phase-II, New Delhi - 110034</p>
-            <p className="text-xs text-[#4A6580]">📞 <a href="tel:18001202880" className="text-[#7BA0B8] hover:text-white">1800-120-280-280</a></p>
-            <p className="text-xs text-[#4A6580]">✉️ <a href="mailto:info@medivisionhealth.com" className="text-[#7BA0B8] hover:text-white">info@medivisionhealth.com</a></p>
+            <p className="text-xs text-[#4A6580] leading-snug text-white">📍 Office No. 218, Second Floor, Trimurti Prime Tower, Niwaru Rd, Ganesh Nagar Vistar, Jhotwara Industrial Area, Jhotwara, Jaipur, Rajasthan 302012</p>
+            <p className="text-xs text-[#4A6580]">✉️ <a href="mailto:info@medivisionhealth.com" className="text-[#7BA0B8] hover:text-white">info@poiyahealthcare.com</a></p>
           </div>
         </div>
       </div>
 
       <div className="border-t border-white/[0.08] pt-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
-        <p className="text-[13px] text-[#4A6580]">© {new Date().getFullYear()} MediVision Healthcare Limited. All rights reserved.</p>
+        <p className="text-[13px] text-[#4A6580]">© {new Date().getFullYear()} Poiya Healthcare Pvt. Ltd. All rights reserved.</p>
         <div className="flex gap-5">
           <Link to="/privacy" className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition">Privacy Policy</Link>
           <Link to="/terms" className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition">Terms of Use</Link>

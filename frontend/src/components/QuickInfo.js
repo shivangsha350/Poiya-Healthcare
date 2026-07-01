@@ -41,7 +41,7 @@ const items = [
 
 export default function QuickInfo() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 bg-white border-b border-bordercol">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 bg-cyan-5 border-b border-bordercol">
       {items.map((item, i) => (
         <div
           key={i}

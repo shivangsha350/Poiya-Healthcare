@@ -1,111 +1,323 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useState } from 'react';
 import StatsBand from '../components/StatsBand';
-
-const timeline = [
-  { year: '1996', title: 'Company Founded', desc: 'Started as a small distributor of X-ray consumables in New Delhi.' },
-  { year: '2002', title: 'Carestream Partnership', desc: 'Became an authorised partner of Carestream Health (formerly Kodak Health Imaging).' },
-  { year: '2008', title: 'Digital Transition', desc: 'Launched our first line of CR and DR digital radiography systems.' },
-  { year: '2015', title: 'Make in India', desc: 'Started manufacturing portable X-ray units under the Make in India initiative.' },
-  { year: '2020', title: 'Global Expansion', desc: 'Extended reach to Nepal, Bangladesh, Philippines, Dubai and Singapore.' },
-  { year: '2024', title: 'AI Integration', desc: 'Launched TB AI detection software and advanced radiology reporting tools.' },
-];
+import Logo from '../Assets/Logo.png';
+import AboutHeroImg from '../Assets/AboutHero.png';
 
 const team = [
-  { name: 'Dr. Rajesh Sharma', role: 'Founder & CEO', initial: 'RS' },
-  { name: 'Priya Mehta', role: 'VP – Sales & Marketing', initial: 'PM' },
-  { name: 'Anil Kumar', role: 'Head of Engineering', initial: 'AK' },
-  { name: 'Sunita Rao', role: 'Director – Service Operations', initial: 'SR' },
+  { name: "Mr. Ramkumarr Dubey", role: "Founder & CEO", initial: "RD", image: Logo },
+  { name: "Mrs. Timcy Dubey", role: "Chief Managing Director", initial: "TD", image: "/team/priya-mehta.jpg" },
+  { name: "Mr. Shiv Dixit", role: "Head - Sales & Marketing", initial: "SD", image: "/team/anil-kumar.jpg" },
+  { name: "Mrs. Reena Sharma", role: "HR Operations", initial: "RS", image: "/team/sunita-rao.jpg" },
 ];
 
-export default function About() {
+const pillars = [
+  { icon: '🎯', title: 'Our Mission', desc: 'To deliver affordable, high-quality radiology and imaging solutions that empower healthcare professionals to provide the best possible patient outcomes.', highlight: true },
+  { icon: '🔭', title: 'Our Vision', desc: 'To be the most trusted name in medical imaging across South Asia and the Middle East by 2030, driven by innovation and the Make in India initiative.' },
+  { icon: '💡', title: 'Our Values', desc: 'Quality, integrity, innovation and customer-first service form the four pillars of everything we do at Poiya Healthcure.' },
+];
+
+const reviews = [
+  { text: "Poiya Healthcure transformed our radiology department. The Carestream systems they provided are exceptional, and the installation support was flawless.", name: "Dr. Arjun Mehta", role: "Radiologist, Apollo Hospitals Delhi", initials: "AM" },
+  { text: "Outstanding service and top-quality imaging equipment. Our portable X-ray unit from Poiya has been a game changer for our remote healthcare camps.", name: "Dr. Sunita Rao", role: "Chief Medical Officer, Rural Health NGO", initials: "SR" },
+  { text: "The AI-ready DR system we purchased works seamlessly with our reporting software. Poiya's team guided us through every step of the setup.", name: "Mr. Rakesh Gupta", role: "Hospital Administrator, Max Healthcare", initials: "RG" },
+  { text: "We've been working with Poiya for over 8 years. Their pan-India service support is unmatched — any issue is resolved within 24 hours.", name: "Dr. Priya Sharma", role: "Director, City Diagnostic Centre", initials: "PS" },
+  { text: "The flexible EMI plan made it possible for our small clinic to upgrade to digital radiography. Truly a partner that understands our needs.", name: "Dr. Kiran Patel", role: "Owner, Patel Clinic Ahmedabad", initials: "KP" },
+  { text: "Poiya's GeM registration made the procurement process for our government hospital completely hassle-free. Professional and trustworthy.", name: "Mr. Anil Verma", role: "Purchase Officer, AIIMS Jodhpur", initials: "AV" },
+  { text: "The CR system quality is excellent and the training provided by Poiya's engineers was thorough. Highly recommend them to any healthcare facility.", name: "Dr. Meena Joshi", role: "Head of Radiology, Fortis Hospital", initials: "MJ" },
+  { text: "We ordered through the government tender process and Poiya made it incredibly smooth. Equipment arrived on time and in perfect condition.", name: "Dr. Suresh Nair", role: "Medical Superintendent, ESI Hospital Kerala", initials: "SN" },
+  { text: "The TB AI detection software integrated with our workflow perfectly. Poiya genuinely understands modern diagnostic needs.", name: "Dr. Fatima Sheikh", role: "Pulmonologist, Global Hospital Mumbai", initials: "FS" },
+  { text: "Make in India portable X-ray units from Poiya have been deployed across 12 of our camps. Durable, reliable, and cost-effective.", name: "Mr. Vijay Thakur", role: "Program Director, Aarogya Foundation", initials: "VT" },
+];
+
+function CornerBrackets({ size = 'w-5 h-5', color = 'border-accent', visibility = 'opacity-100' }) {
+  const base = `absolute ${size} ${color} ${visibility} pointer-events-none transition-all duration-300`;
   return (
-    <main>
-      {/* Page Header */}
-      <div className="bg-gradient-to-br from-primary via-primary to-mid px-5 sm:px-10 py-12 md:py-[70px] text-center text-white">
-        <div className="text-xs font-semibold tracking-[2px] uppercase text-accent mb-3">Who We Are</div>
-        <h1 className="font-display text-2xl sm:text-3xl md:text-[42px] font-extrabold text-white mb-3">About MediVision Healthcare</h1>
-        <p className="text-sm sm:text-base text-[#B0D8ED]">28+ years of advancing radiology across India and the world</p>
+    <>
+      <span className={`${base} -top-2 -left-2 border-t-2 border-l-2`} />
+      <span className={`${base} -top-2 -right-2 border-t-2 border-r-2`} />
+      <span className={`${base} -bottom-2 -left-2 border-b-2 border-l-2`} />
+      <span className={`${base} -bottom-2 -right-2 border-b-2 border-r-2`} />
+    </>
+  );
+}
+
+function GridBackdrop({ id, className = '' }) {
+  return (
+    <svg className={`absolute inset-0 w-full h-full pointer-events-none ${className}`} aria-hidden="true">
+      <defs>
+        <pattern id={id} width="36" height="36" patternUnits="userSpaceOnUse">
+          <path d="M36 0H0V36" fill="none" stroke="currentColor" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill={`url(#${id})`} />
+    </svg>
+  );
+}
+
+function CustomerSlider() {
+  const [page, setPage] = useState(0);
+  const perPage = 3;
+  const totalPages = Math.ceil(reviews.length / perPage);
+  const slice = reviews.slice(page * perPage, page * perPage + perPage);
+
+  return (
+    <section className="px-5 sm:px-10 py-16 md:py-24 bg-primary relative overflow-hidden">
+      <GridBackdrop id="gridReviews" className="opacity-[0.05] text-white" />
+
+      <div className="text-center mb-12 relative z-10">
+        <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[3px] uppercase text-accent border border-accent/30 rounded-full px-4 py-1.5 mb-4 bg-white/5">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+          Happy Customers
+        </div>
+        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">What Our Clients Say</h2>
       </div>
 
-      {/* Mission + Vision */}
-      <section className="px-5 sm:px-10 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-7xl mx-auto">
-          <div className="border-[1.5px] border-accent2 bg-lightbg rounded-2xl p-7 sm:p-8 transition hover:shadow-[0_8px_24px_rgba(0,100,160,0.1)] hover:-translate-y-0.5">
-            <div className="text-3xl mb-3.5">🎯</div>
-            <h3 className="font-display text-lg sm:text-xl font-extrabold text-primary mb-2.5">Our Mission</h3>
-            <p className="text-sm text-textmuted leading-relaxed">To deliver affordable, high-quality radiology and imaging solutions that empower healthcare professionals to provide the best possible patient outcomes.</p>
-          </div>
-          <div className="border-[1.5px] border-bordercol bg-white rounded-2xl p-7 sm:p-8 transition hover:shadow-[0_8px_24px_rgba(0,100,160,0.1)] hover:-translate-y-0.5">
-            <div className="text-3xl mb-3.5">🔭</div>
-            <h3 className="font-display text-lg sm:text-xl font-extrabold text-primary mb-2.5">Our Vision</h3>
-            <p className="text-sm text-textmuted leading-relaxed">To be the most trusted name in medical imaging across South Asia and the Middle East by 2030, driven by innovation and the Make in India initiative.</p>
-          </div>
-          <div className="border-[1.5px] border-bordercol bg-white rounded-2xl p-7 sm:p-8 transition hover:shadow-[0_8px_24px_rgba(0,100,160,0.1)] hover:-translate-y-0.5">
-            <div className="text-3xl mb-3.5">💡</div>
-            <h3 className="font-display text-lg sm:text-xl font-extrabold text-primary mb-2.5">Our Values</h3>
-            <p className="text-sm text-textmuted leading-relaxed">Quality, integrity, innovation and customer-first service form the four pillars of everything we do at MediVision.</p>
-          </div>
-        </div>
-      </section>
-
-      <StatsBand />
-
-      {/* Timeline */}
-      <section className="px-5 sm:px-10 py-12 md:py-16 bg-sectionbg">
-        <div className="text-center mb-10 sm:mb-12">
-          <div className="text-xs font-semibold tracking-[2px] uppercase text-accent mb-2.5">Our Journey</div>
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-primary">28 Years of Excellence</h2>
-        </div>
-
-        <div className="relative max-w-[800px] mx-auto py-5">
-          {/* Vertical line - centered on desktop, left-aligned on mobile */}
-          <div className="absolute top-0 bottom-0 w-0.5 bg-bordercol left-2 md:left-1/2 md:-translate-x-1/2" />
-
-          {timeline.map((item, i) => (
-            <div
-              key={i}
-              className={`relative flex mb-8 sm:mb-10 pl-8 md:pl-0 ${
-                i % 2 === 0 ? 'md:justify-end md:pr-[calc(50%+32px)]' : 'md:justify-start md:pl-[calc(50%+32px)]'
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          {slice.map((r, i) => (
+            <motion.div
+              key={page * perPage + i}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: i * 0.07 }}
+              className={`rounded-2xl p-6 sm:p-7 border-2 transition-all duration-300 ${
+                i === 1
+                  ? 'border-accent/60 bg-white/[0.07]'
+                  : 'border-white/10 bg-white/[0.04]'
               }`}
             >
-              <div className="bg-white border-[1.5px] border-bordercol rounded-2xl p-5 sm:p-6 max-w-full md:max-w-[300px] transition hover:border-accent2 hover:shadow-[0_4px_16px_rgba(0,100,160,0.08)]">
-                <div className="font-display text-xl sm:text-[22px] font-extrabold text-accent mb-1.5">{item.year}</div>
-                <h4 className="text-[15px] font-bold text-primary mb-1.5">{item.title}</h4>
-                <p className="text-[13px] text-textmuted leading-relaxed">{item.desc}</p>
+              <div className="flex gap-0.5 mb-4">
+                {[...Array(5)].map((_, s) => (
+                  <span key={s} className="text-accent text-base">★</span>
+                ))}
               </div>
-              <div className="absolute left-2 md:left-1/2 top-6 w-3.5 h-3.5 rounded-full bg-accent border-[3px] border-white shadow-[0_0_0_2px_#48CAE4] -translate-x-1/2" />
-            </div>
+              <p className="text-[13px] text-[#B0D8ED]/80 leading-relaxed mb-5 italic">"{r.text}"</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-mid flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                  {r.initials}
+                </div>
+                <div>
+                  <div className="text-white text-sm font-bold">{r.name}</div>
+                  <div className="text-[#B0D8ED]/60 text-[11px]">{r.role}</div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-center gap-4">
+          <button
+            onClick={() => setPage((p) => (p - 1 + totalPages) % totalPages)}
+            className="w-9 h-9 rounded-full border-2 border-white/20 text-white flex items-center justify-center hover:border-accent hover:bg-accent/10 transition-all duration-200"
+          >
+            ←
+          </button>
+          <div className="flex gap-2 items-center">
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setPage(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === page ? 'w-5 bg-accent' : 'w-2 bg-white/25'
+                }`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => setPage((p) => (p + 1) % totalPages)}
+            className="w-9 h-9 rounded-full border-2 border-white/20 text-white flex items-center justify-center hover:border-accent hover:bg-accent/10 transition-all duration-200"
+          >
+            →
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function About() {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <main className="bg-[#EAF6FB] min-h-screen antialiased">
+
+      {/* Page Header */}
+      <div className="relative w-full overflow-hidden">
+        <img
+          src={AboutHeroImg}
+          alt="Contact MediVision Healthcare — our team is ready to help you find the right radiology solution"
+          className="w-full h-auto object-cover"
+        />
+        <div
+          className="absolute bottom-0 left-0 w-full h-10 sm:h-14"
+          style={{ background: '#EAF6FB', clipPath: 'polygon(0 100%, 100% 100%, 100% 40%, 0 100%)' }}
+        />
+      </div>
+
+      {/* Mission + Vision + Values */}
+      <section className="px-5 sm:px-10 py-14 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-7xl mx-auto">
+          {pillars.map((card, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ delay: i * 0.08 }}
+              className="group relative rounded-2xl p-7 sm:p-8 border-2 border-accent2 bg-gradient-to-br from-[#1E5A8C] via-[#A9D4F0] to-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(0,100,160,0.18)]"
+            >
+              <CornerBrackets size="w-4 h-4" color="border-accent" visibility="opacity-0 group-hover:opacity-100" />
+              <div className="w-14 h-14 rounded-xl bg-white/80 border border-accent2/30 flex items-center justify-center text-3xl mb-4 shadow-sm">
+                {card.icon}
+              </div>
+              <h3 className="font-display text-lg sm:text-xl font-extrabold text-primary mb-2.5">{card.title}</h3>
+              <p className="text-sm text-textmuted leading-relaxed">{card.desc}</p>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Team */}
-      <section className="px-5 sm:px-10 py-12 md:py-16">
-        <div className="text-center mb-10">
-          <div className="text-xs font-semibold tracking-[2px] uppercase text-accent mb-2.5">Leadership</div>
+      {/* About Section */}
+      <section className="px-5 sm:px-10 py-12 md:py-16 bg-cyan-50">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-7xl mx-auto">
+          {/* Left Image */}
+          <div className="order-2 lg:order-1 reveal">
+            <div className="rounded-[20px] overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+              <img
+                src={AboutHeroImg}
+                alt="About Poiya Healthcare"
+                className="w-full h-[240px] md:h-[340px] lg:h-[420px] object-cover rounded-[20px] transition-transform duration-500 ease-in-out hover:scale-110 cursor-pointer"
+              />
+            </div>
+          </div>
+
+          {/* Right Content */}
+          <div className="order-1 lg:order-2 reveal">
+            <div className="text-3xl font-extrabold tracking-[2px] uppercase text-accent mb-2.5">
+              About Poiya Healthcare
+            </div>
+
+            <h2 className="font-display text-xl sm:text-3xl font-semibold text-primary mb-3.5 leading-snug">
+              A Trusted Leader in Radiology &amp; Imaging
+            </h2>
+
+            <p className="text-[15px] text-textmuted leading-relaxed mb-6">
+              We are a trusted leader in radiology and imaging, delivering
+              cutting-edge, affordable solutions under the "Make in India"
+              initiative. Partnered with Carestream Health USA, we bring CR, DR,
+              films and high-end X-ray machines to hospitals, clinics and
+              diagnostic centres across India.
+            </p>
+
+            <ul className="flex flex-col gap-3 mb-7">
+              {[
+                "50kW Mobile Digital X-Ray Systems",
+                "80kW Ceiling Suspended X-Ray Machines",
+                "Digital C-Arms & Portable X-Ray Solutions",
+                "Presence in India",
+                "All types of Medical Accessories",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-primary text-[15px]"
+                >
+                  <span className="w-6 h-6 rounded-full bg-lightbg text-mid flex items-center justify-center font-bold flex-shrink-0">
+                    ✓
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="/documents/company-profile.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-cta hover:bg-ctadark text-white px-7 py-3 rounded-[10px] font-semibold transition"
+            >
+              Company Details
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Team */}
+      <section className="px-5 sm:px-10 py-14 md:py-20">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[3px] uppercase text-accent border border-accent/30 rounded-full px-4 py-1.5 mb-4 bg-white">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+            Leadership
+          </div>
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-primary">Meet Our Team</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-6 max-w-7xl mx-auto">
           {team.map((member, i) => (
-            <div key={i} className="text-center p-6 sm:p-8 border-[1.5px] border-bordercol rounded-2xl bg-white transition hover:shadow-[0_8px_24px_rgba(0,100,160,0.1)] hover:border-accent2">
-              <div className="w-16 sm:w-[72px] h-16 sm:h-[72px] rounded-full bg-gradient-to-br from-mid to-accent text-white font-display text-lg sm:text-[22px] font-extrabold flex items-center justify-center mx-auto mb-4">
-                {member.initial}
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ delay: i * 0.07 }}
+              className="group relative text-center p-6 sm:p-8 border-2 border-accent2 rounded-2xl bg-gradient-to-tl from-[#5FA8DD] via-[#A9D4F0] to-white transition-all duration-300 hover:shadow-[0_16px_36px_rgba(0,100,160,0.18)] hover:-translate-y-1"
+            >
+              <CornerBrackets size="w-4 h-4" color="border-accent" visibility="opacity-0 group-hover:opacity-100" />
+              <div className="relative w-24 sm:w-28 h-24 sm:h-28 rounded-full bg-gradient-to-br from-mid to-accent text-white font-display text-xl sm:text-2xl font-extrabold flex items-center justify-center mx-auto mb-4 ring-4 ring-white/40 group-hover:ring-white/60 transition-all duration-300 overflow-hidden">
+                {member.image ? (
+                  <img src={member.image} alt={member.name} className="w-full h-full object-cover rounded-full" />
+                ) : (
+                  member.initial
+                )}
               </div>
               <div className="font-bold text-sm sm:text-[15px] text-primary mb-1">{member.name}</div>
               <div className="text-xs sm:text-[13px] text-textmuted">{member.role}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
+      {/* Happy Customers Slider */}
+      <CustomerSlider />
+
       {/* CTA */}
-      <div className="bg-gradient-to-br from-primary to-mid px-5 sm:px-10 py-12 md:py-16 text-center">
-        <h2 className="font-display text-2xl sm:text-[30px] font-extrabold text-white mb-3">Ready to Work with Us?</h2>
-        <p className="text-[#CAF0F8] text-sm sm:text-base mb-7 max-w-xl mx-auto">Explore our product range or get in touch to discuss your imaging needs.</p>
-        <div className="flex gap-3.5 justify-center flex-wrap">
-          <Link to="/products" className="bg-white text-mid px-7 py-3 rounded-[9px] font-bold text-sm hover:bg-lightbg transition inline-block">View Products</Link>
-          <Link to="/contact" className="bg-transparent text-white px-7 py-3 rounded-[9px] font-semibold text-sm border-2 border-white/35 hover:bg-white/10 transition inline-block">Contact Us →</Link>
+      <div className="bg-gradient-to-br from-primary to-mid px-5 sm:px-10 py-16 md:py-24 text-center relative overflow-hidden">
+        <GridBackdrop id="gridAboutCta" className="opacity-[0.06] text-white" />
+        {!shouldReduceMotion && (
+          <motion.div
+            className="absolute left-0 right-0 h-28 bg-gradient-to-b from-accent/0 via-accent/20 to-accent/0 pointer-events-none"
+            initial={{ top: '-25%' }}
+            animate={{ top: ['-25%', '125%'] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'linear', repeatDelay: 2 }}
+          />
+        )}
+
+        <div className="relative z-10 max-w-xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-display text-2xl sm:text-[36px] font-extrabold text-white mb-3 tracking-tight"
+          >
+            Ready to Work with Us?
+          </motion.h2>
+          <p className="text-[#CAF0F8] text-sm sm:text-base mb-9 max-w-xl mx-auto">
+            Explore our product range or get in touch to discuss your imaging needs.
+          </p>
+          <div className="flex gap-3.5 justify-center flex-wrap">
+            <Link
+              to="/products"
+              className="bg-white text-mid px-8 py-3.5 rounded-xl font-extrabold text-sm uppercase tracking-wide hover:shadow-[0_10px_30px_rgba(255,255,255,0.3)] transition-all duration-200 hover:scale-[1.03] inline-block"
+            >
+              View Products
+            </Link>
+            <Link
+              to="/contact"
+              className="bg-transparent text-white px-8 py-3.5 rounded-xl font-bold text-sm border-2 border-white/35 hover:bg-white/10 hover:border-white/60 transition-all duration-200 hover:scale-[1.03] inline-block"
+            >
+              Contact Us →
+            </Link>
+          </div>
         </div>
       </div>
     </main>

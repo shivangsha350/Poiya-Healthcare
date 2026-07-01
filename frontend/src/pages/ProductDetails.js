@@ -81,7 +81,7 @@ export default function ProductDetails() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-[#EAF6FB]">
         <div className="text-center space-y-4">
           <div className="w-12 h-12 border-4 border-mid border-t-transparent rounded-full animate-spin mx-auto"></div>
           <p className="text-sm font-semibold text-slate-500">Loading product datasheet...</p>
@@ -92,7 +92,7 @@ export default function ProductDetails() {
 
   if (error || !product) {
     return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 px-5">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center bg-[#EAF6FB] px-5">
         <div className="text-5xl mb-4">⚠️</div>
         <h2 className="text-xl font-extrabold text-primary mb-2">Product Not Found</h2>
         <p className="text-sm text-textmuted text-center max-w-md mb-6">{error || 'The product you are looking for does not exist or has been removed.'}</p>
@@ -112,7 +112,7 @@ export default function ProductDetails() {
   ].filter(Boolean);
 
   return (
-    <main className="bg-slate-50/50 min-h-screen pb-16">
+    <main className="bg-[#EAF6FB] min-h-screen pb-16">
       
       {/* 1. Dynamic Product Banner */}
       <div className="bg-gradient-to-br from-primary via-primary to-mid px-5 sm:px-10 py-12 md:py-16 text-white relative overflow-hidden">

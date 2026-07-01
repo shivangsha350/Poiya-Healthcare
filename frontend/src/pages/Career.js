@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { motion, useReducedMotion } from 'framer-motion';
+import CareerHeroImg from '../Assets/CareerHero.png';
 
 const perks = [
   { icon: '💰', title: 'Competitive Salary', desc: 'Industry-leading compensation with performance bonuses.' },
@@ -10,16 +12,31 @@ const perks = [
   { icon: '🏖️', title: 'Paid Leave', desc: '18 days annual leave plus public holidays and sick leave.' },
 ];
 
+function GridBackdrop({ id, className = '' }) {
+  return (
+    <svg className={`absolute inset-0 w-full h-full pointer-events-none ${className}`} aria-hidden="true">
+      <defs>
+        <pattern id={id} width="36" height="36" patternUnits="userSpaceOnUse">
+          <path d="M36 0H0V36" fill="none" stroke="currentColor" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill={`url(#${id})`} />
+    </svg>
+  );
+}
+
 export default function Career() {
+  const shouldReduceMotion = useReducedMotion();
+
   const [openings, setOpenings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  
+
   const [selected, setSelected] = useState(null);
   const [applied, setApplied] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  
+
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -29,7 +46,7 @@ export default function Career() {
     employer: '',
     motivation: ''
   });
-  
+
   const [resumeFile, setResumeFile] = useState(null);
 
   // Fetch openings
@@ -117,11 +134,18 @@ export default function Career() {
   };
 
   return (
-    <main>
-      <div className="bg-gradient-to-br from-primary via-primary to-mid px-5 sm:px-10 py-12 md:py-[70px] text-center text-white">
+    <main className="bg-[#EAF6FB] min-h-screen">
+      {/* <div className="bg-gradient-to-br from-primary via-primary to-mid px-5 sm:px-10 py-12 md:py-[70px] text-center text-white">
         <div className="text-xs font-semibold tracking-[2px] uppercase text-accent mb-3">Join Our Team</div>
         <h1 className="font-display text-2xl sm:text-3xl md:text-[42px] font-extrabold text-white mb-3">Build Your Career at MediVision</h1>
         <p className="text-sm sm:text-base text-[#B0D8ED]">Be part of a mission-driven team transforming healthcare imaging across India</p>
+      </div> */}
+      <div className="relative w-full overflow-hidden">
+        <img
+          src={CareerHeroImg}
+          alt="Contact MediVision Healthcare — our team is ready to help you find the right radiology solution"
+          className="w-full h-auto object-cover"
+        />
       </div>
 
       {/* Perks */}
@@ -142,7 +166,7 @@ export default function Career() {
       </section>
 
       {/* Openings */}
-      <section className="px-5 sm:px-10 py-12 md:py-16 bg-sectionbg">
+      <section className="px-5 sm:px-10 py-12 md:py-16">
         <div className="text-center mb-10 max-w-7xl mx-auto">
           <div className="text-xs font-semibold tracking-[2px] uppercase text-accent mb-2.5">Open Positions</div>
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-primary">Current Openings</h2>
@@ -172,8 +196,8 @@ export default function Career() {
                   <div className="flex gap-3.5 flex-wrap items-center">
                     <span className="bg-lightbg text-mid px-2.5 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wide">{job.department}</span>
                     <span className="text-xs text-textmuted">📍 {job.location}</span>
-                    <span className="text-xs text-textmuted">⏱ {job.type}</span>
-                    {job.experience && <span className="text-xs text-textmuted">🧑‍💼 {job.experience}</span>}
+                    <span className="text-xs text-textmuted">⏱️ {job.type}</span>
+                    {job.experience && <span className="text-xs text-textmuted">🧑💼 {job.experience}</span>}
                   </div>
                   {job.description && (
                     <p className="text-xs text-textmuted mt-2.5 line-clamp-2 leading-relaxed whitespace-pre-line max-w-3xl">
@@ -296,12 +320,50 @@ export default function Career() {
       )}
 
       {/* CTA */}
-      <div className="bg-gradient-to-br from-accent to-mid px-5 sm:px-10 py-12 md:py-16 text-center">
-        <h2 className="font-display text-xl sm:text-[28px] font-extrabold text-white mb-2.5">Don't See a Suitable Role?</h2>
-        <p className="text-[#CAF0F8] text-sm mb-6 max-w-md mx-auto">Send us your resume and we'll reach out when the right opportunity arises.</p>
-        <a href="mailto:hr@medivisionhealth.com" className="bg-white text-mid px-7 py-3 rounded-[9px] font-bold text-sm hover:bg-lightbg transition inline-block">
-          Send Your Resume
-        </a>
+      <div className="relative px-5 sm:px-10 py-16 md:py-24 text-center overflow-hidden bg-gradient-to-br from-accent to-mid">
+        <GridBackdrop id="gridCareerCta" className="opacity-[0.10] text-white" />
+
+        <div className="absolute -top-20 -left-16 w-72 h-72 rounded-full bg-white/10 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 right-0 w-96 h-96 rounded-full bg-accent2/20 blur-3xl pointer-events-none" />
+
+        {!shouldReduceMotion && (
+          <motion.div
+            className="absolute left-0 right-0 h-24 bg-gradient-to-b from-white/0 via-white/30 to-white/0 pointer-events-none"
+            initial={{ top: '-20%' }}
+            animate={{ top: ['-20%', '120%'] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'linear', repeatDelay: 1.5 }}
+          />
+        )}
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative z-10 max-w-xl mx-auto bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl px-6 sm:px-10 py-10 sm:py-12 shadow-[0_20px_60px_rgba(0,60,90,0.25)]"
+        >
+          <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[3px] uppercase text-white border border-white/40 rounded-full px-4 py-1.5 mb-5 bg-white/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            Still Looking
+          </div>
+
+          <h2 className="font-display text-xl sm:text-[32px] font-extrabold text-white mb-3 tracking-tight">
+            Don't See a Suitable Role?
+          </h2>
+
+          <p className="text-cyan-50 text-sm sm:text-base mb-8 max-w-md mx-auto">
+            Send us your resume and we'll reach out when the right opportunity arises.
+          </p>
+
+          <motion.a
+            href="mailto:hr@medivisionhealth.com"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="group bg-white text-cyan-700 px-8 py-3.5 rounded-xl font-extrabold text-sm uppercase tracking-wide hover:shadow-[0_10px_30px_rgba(255,255,255,0.4)] transition-shadow duration-200 inline-flex items-center gap-2"
+          >
+            <span>Send Your Resume</span>
+            <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+          </motion.a>
+        </motion.div>
       </div>
     </main>
   );

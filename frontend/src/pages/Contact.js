@@ -180,11 +180,11 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3.5">
                   <div>
                     <label className={labelClass}>First Name *</label>
-                    <input name="firstName" value={form.firstName} onChange={handleChange} placeholder="Shubham" required className={inputClass} />
+                    <input name="firstName" value={form.firstName} onChange={handleChange} placeholder="Ravi" required className={inputClass} />
                   </div>
                   <div>
                     <label className={labelClass}>Last Name *</label>
-                    <input name="lastName" value={form.lastName} onChange={handleChange} placeholder="Taksali" required className={inputClass} />
+                    <input name="lastName" value={form.lastName} onChange={handleChange} placeholder="Garg" required className={inputClass} />
                   </div>
                 </div>
 
@@ -268,7 +268,7 @@ export default function Contact() {
                   Niwaru Rd, Jhotwara, Jaipur, Rajasthan - 302012
                 </p>
                 <a
-                  href="https://maps.app.goo.gl/rwJJ6SoPZDTB1k8u9"
+                  href="https://maps.app.goo.gl/nCSZ6qvp5ECnPc6BA"
                   target="_blank"
                   rel="noreferrer"
                   className="bg-mid text-white px-5 py-2.5 rounded-xl font-bold text-[13px] uppercase tracking-wide hover:bg-primary transition inline-block"

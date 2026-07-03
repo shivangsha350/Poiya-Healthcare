@@ -99,7 +99,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/[0.08] pt-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
-        <p className="text-[13px] text-[#4A6580]">© {new Date().getFullYear()} Poiya Healthcare Pvt. Ltd. All rights reserved.</p>
+        <p className="text-[13px] text-[#4A6580]">© {new Date().getFullYear()} Poiya Healthcare Pvt. Ltd. All rights reserved. Developed & Managed by bitebursttechnologies@gmail.com</p>
         <div className="flex gap-5">
           <Link to="/privacy" className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition">Privacy Policy</Link>
           <Link to="/terms" className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition">Terms of Use</Link>

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const stats = [
-  { num: 3700, suffix: '+', label: 'Installations' },
-  { num: 28, suffix: '+', label: 'Years Experience' },
-  { num: 100, suffix: '+', label: 'Employees' },
-  { num: 19, suffix: '+', label: 'Awards Won' },
+  { num: 1500, suffix: '+', label: 'Installations' },
+  { num: 16, suffix: '+', label: 'Years Experience' },
+  { num: 20, suffix: '+', label: 'Employees' },
+  { num: 10, suffix: '+', label: 'Awards Won' },
 ];
 
 function useCountUp(target, duration = 1600, start = false) {

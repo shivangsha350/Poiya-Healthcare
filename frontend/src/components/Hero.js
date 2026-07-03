@@ -74,15 +74,15 @@ export default function Hero() {
         </div>
         <div className="flex gap-8 max-md:justify-center">
           <div>
-            <div className="font-display text-2xl font-extrabold text-accent">3700+</div>
+            <div className="font-display text-2xl font-extrabold text-accent">1500+</div>
             <div className="text-xs text-[#90CAE0] uppercase tracking-wide">Installations</div>
           </div>
           <div>
-            <div className="font-display text-2xl font-extrabold text-accent">28+</div>
+            <div className="font-display text-2xl font-extrabold text-accent">16+</div>
             <div className="text-xs text-[#90CAE0] uppercase tracking-wide">Years Experience</div>
           </div>
           <div>
-            <div className="font-display text-2xl font-extrabold text-accent">19+</div>
+            <div className="font-display text-2xl font-extrabold text-accent">10+</div>
             <div className="text-xs text-[#90CAE0] uppercase tracking-wide">Awards Won</div>
           </div>
         </div>

@@ -201,7 +201,7 @@ hover:scale-110 cursor-pointer"/>
             </span>
 
             <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
-              Complete Radiology Equipment Range
+              Complete Equipment Range
             </h2>
 
             <p className="max-w-2xl mx-auto text-gray-600 leading-7">

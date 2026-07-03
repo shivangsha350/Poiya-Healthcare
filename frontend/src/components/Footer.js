@@ -17,7 +17,7 @@ export default function Footer() {
               />
             </div>
             <span className="font-display text-xl font-extrabold text-white">
-              Poiya<span className="text-accent">Healthcare</span>
+              Poiya <span className="text-accent">Healthcare Pvt Ltd.</span>
             </span>
           </Link>
           <p className="text-[13px] text-[#7BA0B8] leading-relaxed my-3.5 max-w-[280px]">
@@ -81,11 +81,19 @@ export default function Footer() {
             <li><Link to="/contact" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Contact Us</Link></li>
             <li><Link to="/contact" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Become a Partner</Link></li>
             <li><Link to="/privacy" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Privacy Policy</Link></li>
-            <li><Link to="/terms" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Terms & Conditions</Link></li>
-          </ul>
+            <li>
+  <a
+               href="/TERMS.pdf"
+              target="_blank"
+    rel="noreferrer"
+    className="text-[13px] text-[#7BA0B8] hover:text-white transition"
+  >
+    Terms & Conditions
+  </a>
+</li>          </ul>
           <div className="mt-5 flex flex-col gap-1.5">
-            <p className="text-xs text-[#4A6580] leading-snug text-white">📍 Office No. 218, Second Floor, Trimurti Prime Tower, Niwaru Rd, Ganesh Nagar Vistar, Jhotwara Industrial Area, Jhotwara, Jaipur, Rajasthan 302012</p>
-            <p className="text-xs text-[#4A6580]">✉️ <a href="mailto:info@medivisionhealth.com" className="text-[#7BA0B8] hover:text-white">info@poiyahealthcare.com</a></p>
+            <p className="text-xs text-[#4A6580] leading-snug text-white">📍 Office No. 301, Third Floor, Trimurti Prime Tower, Niwaru Rd, Ganesh Nagar Vistar, Jhotwara Industrial Area, Jhotwara, Jaipur, Rajasthan 302012</p>
+            <p className="text-xs text-[#4A6580]">✉️ <a href="mailto:poiyahealthcure99@gmail.com" className="text-[#7BA0B8] hover:text-white">poiyahealthcure99@gmail.com</a></p>
           </div>
         </div>
       </div>
@@ -98,6 +106,6 @@ export default function Footer() {
           <Link to="/sitemap" className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition">Sitemap</Link>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 }

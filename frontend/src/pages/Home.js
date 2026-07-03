@@ -144,23 +144,27 @@ hover:scale-110 cursor-pointer"/>
             </div>
 
             <h2 className="font-display text-xl sm:text-3xl font-semibold text-primary mb-3.5 leading-snug">
-              A Trusted Leader in Radiology &amp; Imaging
+              A Trusted Leader in Healthcare &amp; Industry
             </h2>
 
             <p className="text-[15px] text-textmuted leading-relaxed mb-6">
-              We are a trusted leader in radiology and imaging, delivering
-              cutting-edge, affordable solutions under the "Make in India"
-              initiative. Partnered with Carestream Health USA, we bring CR, DR,
-              films and high-end X-ray machines to hospitals, clinics and
-              diagnostic centres worldwide.
+        What began in 2008 as Digital Photo Chemistry under Mr. Ramkumarr
+        Dubey has grown into Poiya Healthcare India Pvt. Ltd. — a trusted
+        supplier of diagnostic imaging, nephrology, pathology, and oncology
+        equipment to hospitals and diagnostic centres nationwide. Headquartered
+        in Jaipur, Rajasthan, we continue to serve customers across India with
+        quality products and dependable service.
             </p>
 
             <ul className="flex flex-col gap-3 mb-7">
               {[
-                "50kW Mobile Digital X-Ray Systems",
-                "80kW Ceiling Suspended X-Ray Machines",
-                "Digital C-Arms & Portable X-Ray Solutions",
-                "Presence in India, Nepal, Bangladesh, Philippines, Dubai & Singapore",
+                          "Digital Radiography (DR) & Computed Radiography (CR) Systems",
+          "X-Ray Machines, C-Arm & Cath Lab Systems",
+          "CT Scan & MRI Systems",
+          "Dialysis Machines & Consumables",
+          "Pathology & Oncology Equipment",
+          "Nationwide AMC, Installation & Technical Support",
+
               ].map((item) => (
                 <li
                   key={item}

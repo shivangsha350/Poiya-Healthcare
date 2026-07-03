@@ -4,32 +4,35 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useState } from 'react';
 import StatsBand from '../components/StatsBand';
 import Logo from '../Assets/Logo.png';
-import AboutHeroImg from '../Assets/AboutHero.png';
+import AboutHeroImg from '../Assets/AboutUsHero.png';
+import ShivImg from '../Assets/Shiv.jpeg';
+import ReenaImg from '../Assets/Reena.jpeg';
+
 
 const team = [
   { name: "Mr. Ramkumarr Dubey", role: "Founder & CEO", initial: "RD", image: Logo },
-  { name: "Mrs. Timcy Dubey", role: "Chief Managing Director", initial: "TD", image: "/team/priya-mehta.jpg" },
-  { name: "Mr. Shiv Dixit", role: "Head - Sales & Marketing", initial: "SD", image: "/team/anil-kumar.jpg" },
-  { name: "Mrs. Reena Sharma", role: "HR Operations", initial: "RS", image: "/team/sunita-rao.jpg" },
+  { name: "Mrs. Timcy Dubey", role: "Chief Managing Director", initial: "TD", image: ShivImg },
+{ name: "Mr. Shiv Dixit", role: "Head - Sales & Marketing", initial: "SD", image: ShivImg },
+{ name: "Mrs. Reena Sharma", role: "HR Operations", initial: "RS", image: ReenaImg },
 ];
 
 const pillars = [
   { icon: '🎯', title: 'Our Mission', desc: 'To deliver affordable, high-quality radiology and imaging solutions that empower healthcare professionals to provide the best possible patient outcomes.', highlight: true },
-  { icon: '🔭', title: 'Our Vision', desc: 'To be the most trusted name in medical imaging across South Asia and the Middle East by 2030, driven by innovation and the Make in India initiative.' },
+  { icon: '🔭', title: 'Our Vision', desc: 'To become one of India\'s most trusted healthcare technology companies by delivering world-class medical equipment, advanced diagnostic solutions, and innovative healthcare products through quality, integrity, and continuous innovation.'},
   { icon: '💡', title: 'Our Values', desc: 'Quality, integrity, innovation and customer-first service form the four pillars of everything we do at Poiya Healthcure.' },
 ];
 
 const reviews = [
-  { text: "Poiya Healthcure transformed our radiology department. The Carestream systems they provided are exceptional, and the installation support was flawless.", name: "Dr. Arjun Mehta", role: "Radiologist, Apollo Hospitals Delhi", initials: "AM" },
-  { text: "Outstanding service and top-quality imaging equipment. Our portable X-ray unit from Poiya has been a game changer for our remote healthcare camps.", name: "Dr. Sunita Rao", role: "Chief Medical Officer, Rural Health NGO", initials: "SR" },
-  { text: "The AI-ready DR system we purchased works seamlessly with our reporting software. Poiya's team guided us through every step of the setup.", name: "Mr. Rakesh Gupta", role: "Hospital Administrator, Max Healthcare", initials: "RG" },
-  { text: "We've been working with Poiya for over 8 years. Their pan-India service support is unmatched — any issue is resolved within 24 hours.", name: "Dr. Priya Sharma", role: "Director, City Diagnostic Centre", initials: "PS" },
-  { text: "The flexible EMI plan made it possible for our small clinic to upgrade to digital radiography. Truly a partner that understands our needs.", name: "Dr. Kiran Patel", role: "Owner, Patel Clinic Ahmedabad", initials: "KP" },
+  { text: "Poiya Healthcure transformed our radiology department. The Carestream systems they provided are exceptional, and the installation support was flawless.", name: "Dr. Arjun Mehta", role: "Radiologist, Apex Hospitals Delhi", initials: "AM" },
+  { text: "Outstanding service and top-quality imaging equipment. Our portable X-ray unit from Poiya has been a game changer for our remote healthcare camps.", name: "Dr. Sunita Rao", role: "Chief Medical Officer, Shubham Health NGO", initials: "SR" },
+  { text: "The AI-ready DR system we purchased works seamlessly with our reporting software. Poiya's team guided us through every step of the setup.", name: "Mr. Rakesh Gupta", role: "Hospital Administrator, JS MEMORIAL", initials: "RG" },
+  { text: "We've been working with Poiya for over 8 years. Their pan-India service support is unmatched — any issue is resolved within 24 hours.", name: "Dr. Priya Sharma", role: "Director, Shiv Diagnostic Centre", initials: "PS" },
+  { text: "The flexible EMI plan made it possible for our small clinic to upgrade to digital radiography. Truly a partner that understands our needs.", name: "Dr. Kiran Patel", role: "Owner, Ram Clinic Ahmedabad", initials: "KP" },
   { text: "Poiya's GeM registration made the procurement process for our government hospital completely hassle-free. Professional and trustworthy.", name: "Mr. Anil Verma", role: "Purchase Officer, AIIMS Jodhpur", initials: "AV" },
-  { text: "The CR system quality is excellent and the training provided by Poiya's engineers was thorough. Highly recommend them to any healthcare facility.", name: "Dr. Meena Joshi", role: "Head of Radiology, Fortis Hospital", initials: "MJ" },
-  { text: "We ordered through the government tender process and Poiya made it incredibly smooth. Equipment arrived on time and in perfect condition.", name: "Dr. Suresh Nair", role: "Medical Superintendent, ESI Hospital Kerala", initials: "SN" },
+  { text: "The CR system quality is excellent and the training provided by Poiya's engineers was thorough. Highly recommend them to any healthcare facility.", name: "Dr. Meena Joshi", role: "Head of Radiology, Timcy Hospital", initials: "MJ" },
+  { text: "We ordered through the government tender process and Poiya made it incredibly smooth. Equipment arrived on time and in perfect condition.", name: "Dr. Suresh Nair", role: "Medical Superintendent, Shivang Hospital Lucknow", initials: "SN" },
   { text: "The TB AI detection software integrated with our workflow perfectly. Poiya genuinely understands modern diagnostic needs.", name: "Dr. Fatima Sheikh", role: "Pulmonologist, Global Hospital Mumbai", initials: "FS" },
-  { text: "Make in India portable X-ray units from Poiya have been deployed across 12 of our camps. Durable, reliable, and cost-effective.", name: "Mr. Vijay Thakur", role: "Program Director, Aarogya Foundation", initials: "VT" },
+  { text: "Make in India portable X-ray units from Poiya have been deployed across 12 of our camps. Durable, reliable, and cost-effective.", name: "Mr. Vijay Thakur", role: "Program Director, Yash Foundation", initials: "VT" },
 ];
 
 function CornerBrackets({ size = 'w-5 h-5', color = 'border-accent', visibility = 'opacity-100' }) {
@@ -181,68 +184,68 @@ export default function About() {
       </section>
 
       {/* About Section */}
-      <section className="px-5 sm:px-10 py-12 md:py-16 bg-cyan-50">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-7xl mx-auto">
-          {/* Left Image */}
-          <div className="order-2 lg:order-1 reveal">
-            <div className="rounded-[20px] overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-              <img
-                src={AboutHeroImg}
-                alt="About Poiya Healthcare"
-                className="w-full h-[240px] md:h-[340px] lg:h-[420px] object-cover rounded-[20px] transition-transform duration-500 ease-in-out hover:scale-110 cursor-pointer"
-              />
-            </div>
-          </div>
+{/* About Section */}
+<section className="px-5 sm:px-10 py-14 md:py-20 bg-cyan-50">
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-7xl mx-auto">
+    {/* Left Image */}
+    <div className="order-2 lg:order-1 reveal">
+      <div className="rounded-[20px] overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+        <img
+          src={AboutHeroImg}
+          alt="About Poiya Healthcare"
+          className="w-full h-[240px] md:h-[340px] lg:h-[420px] object-cover rounded-[20px] transition-transform duration-500 ease-in-out hover:scale-110 cursor-pointer"
+        />
+      </div>
+    </div>
 
-          {/* Right Content */}
-          <div className="order-1 lg:order-2 reveal">
-            <div className="text-3xl font-extrabold tracking-[2px] uppercase text-accent mb-2.5">
-              About Poiya Healthcare
-            </div>
+    {/* Right Content */}
+    <div className="order-1 lg:order-2 reveal">
+      <div className="text-sm sm:text-base font-extrabold tracking-[2px] uppercase text-accent mb-2.5">
+        About Poiya Healthcare
+      </div>
 
-            <h2 className="font-display text-xl sm:text-3xl font-semibold text-primary mb-3.5 leading-snug">
-              A Trusted Leader in Radiology &amp; Imaging
-            </h2>
+      <h2 className="font-display text-2xl sm:text-4 font-bold text-primary mb-4 leading-snug">
+        Building Trust in Healthcare Since 2008
+      </h2>
 
-            <p className="text-[15px] text-textmuted leading-relaxed mb-6">
-              We are a trusted leader in radiology and imaging, delivering
-              cutting-edge, affordable solutions under the "Make in India"
-              initiative. Partnered with Carestream Health USA, we bring CR, DR,
-              films and high-end X-ray machines to hospitals, clinics and
-              diagnostic centres across India.
-            </p>
+      <p className="text-[15px] sm:text-base text-textmuted leading-relaxed mb-6">
+        What began in 2008 as Digital Photo Chemistry under Mr. Ramkumarr
+        Dubey has grown into Poiya Healthcare India Pvt. Ltd. — a trusted
+        supplier of diagnostic imaging, nephrology, pathology, and oncology
+        equipment to hospitals and diagnostic centres nationwide. Headquartered
+        in Jaipur, Rajasthan, we continue to serve customers across India with
+        quality products and dependable service.
+      </p>
 
-            <ul className="flex flex-col gap-3 mb-7">
-              {[
-                "50kW Mobile Digital X-Ray Systems",
-                "80kW Ceiling Suspended X-Ray Machines",
-                "Digital C-Arms & Portable X-Ray Solutions",
-                "Presence in India",
-                "All types of Medical Accessories",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 text-primary text-[15px]"
-                >
-                  <span className="w-6 h-6 rounded-full bg-lightbg text-mid flex items-center justify-center font-bold flex-shrink-0">
-                    ✓
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="/documents/company-profile.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-cta hover:bg-ctadark text-white px-7 py-3 rounded-[10px] font-semibold transition"
-            >
-              Company Details
-            </a>
-          </div>
-        </div>
-      </section>
+      <ul className="flex flex-col gap-3 mb-7">
+        {[
+          "Digital Radiography (DR) & Computed Radiography (CR) Systems",
+          "X-Ray Machines, C-Arm & Cath Lab Systems",
+          "CT Scan & MRI Systems",
+          "Dialysis Machines & Consumables",
+          "Pathology & Oncology Equipment",
+          "Nationwide AMC, Installation & Technical Support",
+        ].map((item) => (
+          <li key={item} className="flex items-start gap-3 text-primary text-[15px]">
+            <span className="w-6 h-6 rounded-full bg-lightbg text-mid flex items-center justify-center font-bold flex-shrink-0">
+              ✓
+            </span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
 
+      <a
+        href="/documents/company-profile.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block bg-cta hover:bg-ctadark text-white px-7 py-3 rounded-[10px] font-semibold transition"
+      >
+        Company Details
+      </a>
+    </div>
+  </div>
+</section>
       {/* Leadership Team */}
       <section className="px-5 sm:px-10 py-14 md:py-20">
         <div className="text-center mb-12">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_BASE_URL, BACKEND_URL } from '../config';
+import DefaultImg from '../Assets/Default.png';
 
 export default function ProductDetails() {
   const { slug } = useParams();
@@ -116,8 +117,10 @@ export default function ProductDetails() {
     <main className="bg-[#EAF6FB] min-h-screen pb-16">
       
       {/* 1. Dynamic Product Banner */}
-      <div className="bg-gradient-to-br from-primary via-primary to-mid px-5 sm:px-10 py-12 md:py-16 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#00B4D8] rounded-full opacity-10 blur-3xl pointer-events-none -mr-20 -mt-20"></div>
+      <div 
+        className="px-5 sm:px-10 py-12 md:py-16 text-white relative overflow-hidden bg-[#395C6E] bg-no-repeat bg-right bg-contain"
+        style={{ backgroundImage: `url(${DefaultImg})` }}
+      >
         <div className="max-w-7xl mx-auto flex flex-col items-start gap-2.5 relative z-10">
           <Link to="/products" className="text-xs text-accent hover:underline font-bold uppercase tracking-wider flex items-center gap-1.5 mb-2">
             <span>← Catalog</span>

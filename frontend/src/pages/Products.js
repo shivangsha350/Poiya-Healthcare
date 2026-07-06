@@ -7,11 +7,11 @@ import ProductCard from '../components/ProductCard';
 import ProductHeroImg from '../Assets/ProductHero.png';
 
 const advantages = [
-  { icon: '🏆', title: 'Carestream Trimax Authorised', desc: 'Official distributor and service partner of Carestream Health USA in India.' },
+  { icon: '🏆', title: 'Bain Medical Authorised', desc: 'Official distributor and service partner of Bain Medical in India.' },
+   { icon: '🇮🇳', title: 'Dealership', desc: 'We deal in Pre owned Siemenes Products like  CT Scan,MRI,CATHLAB ,Dialysis Machines and diagnostics equipments.' },
   { icon: '🔧', title: 'Pan-India Service', desc: 'We provide our products to all over the India .' },
   { icon: '💰', title: 'Flexible Financing', desc: 'EMI options, rental plans and government tender support available.' },
   { icon: '🤖', title: 'AI-Ready Systems', desc: 'All new systems are AI integration-ready with API support.' },
-  { icon: '🇮🇳', title: 'Make in India', desc: 'Proudly manufacturing portable systems domestically since 2015.' },
   { icon: '📋', title: 'GeM Registered', desc: 'Registered on the Government e-Marketplace for institutional procurement.' },
 ];
 

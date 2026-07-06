@@ -5,10 +5,45 @@ import { API_BASE_URL } from '../config';
 import contactHeroImg from '../Assets/ContactHero.png';
 
 const cards = [
-  { icon: '📞', title: 'Call Us', lines: ['+91 9414044499', '+91 6376949706'], link: 'tel:01414019750', linkTxt: 'Call Now' },
-  { icon: '✉️', title: 'Email Us', lines: ['poiyahealthcure99@gmail.com'], link: 'mailto:poiyahealthcure99@gmail.com', linkTxt: 'Send Email' },
-  { icon: '📍', title: 'Visit Us', lines: ['Office No. 301, Third & Zero Floor, Trimurti Prime Tower ,Niwaru Rd Jhotwara, Jaipur, Rajasthan - 302012'], link: 'https://www.google.com/maps/dir/?api=1&destination=26.96524995783401,75.72187827367408', linkTxt: 'Get Directions' },
-  { icon: '🕐', title: 'Working Hours', lines: ['Mon – Sat: 9:00 AM – 7:00 PM', 'Support: 24/7'], link: 'tel:01414019750', linkTxt: 'Emergency Support' },
+  {
+    icon: '📞',
+    title: 'Call Us',
+    lines: [
+      '+91 9414044499',
+      '+91 9057287635'
+    ],
+    link: 'tel:+919414044499',
+    linkTxt: 'Call Now'
+  },
+  {
+    icon: '✉️',
+    title: 'Email Us',
+    lines: [
+      'poiyahealthcure99@gmail.com',
+      'poiyahc99@gmail.com'
+    ],
+    link: 'mailto:poiyahealthcure99@gmail.com',
+    linkTxt: 'Send Email'
+  },
+  {
+    icon: '📍',
+    title: 'Visit Us',
+    lines: [
+      'Office No. 301, Third Floor, Trimurti Prime Tower, Niwaru Road, Jhotwara, Jaipur, Rajasthan - 302012'
+    ],
+    link: 'https://www.google.com/maps/dir/?api=1&destination=26.96524995783401,75.72187827367408',
+    linkTxt: 'Get Directions'
+  },
+  {
+    icon: '🕐',
+    title: 'Working Hours',
+    lines: [
+      'Mon – Sat: 9:00 AM – 7:00 PM',
+      'Support: 24/7'
+    ],
+    link: 'tel:+919414044499',
+    linkTxt: 'Emergency Support'
+  }
 ];
 
 const branches = [

@@ -237,14 +237,14 @@ export default function About() {
         ))}
       </ul>
 
-      <a
-        href="/documents/company-profile.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block bg-cta hover:bg-ctadark text-white px-7 py-3 rounded-[10px] font-semibold transition"
-      >
-        Company Details
-      </a>
+<a
+  href="/Poiya%20Catalogue%20All%20Items.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block bg-cta hover:bg-ctadark text-white px-7 py-3 rounded-[10px] font-semibold transition"
+>
+  Company Details
+</a>
     </div>
   </div>
 </section>

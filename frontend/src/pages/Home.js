@@ -112,12 +112,12 @@ export default function Home() {
           if (backupRes.data.success && backupRes.data.products && backupRes.data.products.length > 0) {
             setDisplayProducts(backupRes.data.products);
           } else {
-            setDisplayProducts(staticProducts);
+            setDisplayProducts([]); // Do not fallback to static mock products
           }
         }
       } catch (err) {
         console.error("Error fetching homepage products:", err);
-        setDisplayProducts(staticProducts);
+        setDisplayProducts([]); // Empty on error
       }
     };
     fetchHomeProducts();
@@ -198,70 +198,72 @@ hover:scale-110 cursor-pointer"/>
       <StatsBand />
 
       {/* Products */}
-      <section className="px-5 sm:px-10 py-16 bg-cyan-50">
-        <div className="max-w-7xl mx-auto">
+      {displayProducts.length > 0 && (
+        <section className="px-5 sm:px-10 py-16 bg-cyan-50">
+          <div className="max-w-7xl mx-auto">
 
-          {/* Section Heading */}
-          <div className="text-center mb-14 reveal">
-            <span className="inline-block px-4 py-1 rounded-full bg-cyan-100 text-cyan-700 font-semibold text-sm mb-4">
-              Our Products
-            </span>
+            {/* Section Heading */}
+            <div className="text-center mb-14">
+              <span className="inline-block px-4 py-1 rounded-full bg-cyan-100 text-cyan-700 font-semibold text-sm mb-4">
+                Our Products
+              </span>
 
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
-              Complete Equipment Range
-            </h2>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-4">
+                Complete Equipment Range
+              </h2>
 
-            <p className="max-w-2xl mx-auto text-gray-600 leading-7">
-              From portable handheld devices to advanced Digital Radiography systems,
-              we provide reliable imaging solutions for hospitals, diagnostic centres,
-              and healthcare professionals.
-            </p>
-          </div>
+              <p className="max-w-2xl mx-auto text-gray-600 leading-7">
+                From portable handheld devices to advanced Digital Radiography systems,
+                we provide reliable imaging solutions for hospitals, diagnostic centres,
+                and healthcare professionals.
+              </p>
+            </div>
 
-          {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-            {displayProducts.map((p, idx) => (
-              <ProductCard
-                key={p.slug || p._id}
-                _id={p._id}
-                name={p.name}
-                desc={p.description || p.desc}
-                slug={p.slug}
-                image={p.image}
-                category={p.category?.name || p.category}
-                icon={p.icon}
-                index={idx}
-              />
-            ))}
-          </div>
-
-          {/* Button */}
-          <div className="text-center mt-14 reveal">
-            <Link
-              to="/products"
-              className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:shadow-xl hover:scale-105"
-            >
-              View All Products
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
+            {/* Products Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+              {displayProducts.map((p, idx) => (
+                <ProductCard
+                  key={p.slug || p._id}
+                  _id={p._id}
+                  name={p.name}
+                  desc={p.description || p.desc}
+                  slug={p.slug}
+                  image={p.image}
+                  category={p.category?.name || p.category}
+                  icon={p.icon}
+                  index={idx}
                 />
-              </svg>
-            </Link>
-          </div>
+              ))}
+            </div>
 
-        </div>
-      </section>
+            {/* Button */}
+            <div className="text-center mt-14">
+              <Link
+                to="/products"
+                className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:shadow-xl hover:scale-105"
+              >
+                View All Products
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+            </div>
+
+          </div>
+        </section>
+      )}
 
       {/* CTA Band */}
       {/* <div className="bg-gradient-to-br from-accent to-mid px-5 sm:px-10 py-12 md:py-16 text-center reveal">

@@ -7,7 +7,7 @@ import ProductCard from '../components/ProductCard';
 import ProductHeroImg from '../Assets/ProductHero.png';
 
 const advantages = [
-  { icon: '🏆', title: 'Carestream Authorised', desc: 'Official distributor and service partner of Carestream Health USA in India.' },
+  { icon: '🏆', title: 'Carestream Trimax Authorised', desc: 'Official distributor and service partner of Carestream Health USA in India.' },
   { icon: '🔧', title: 'Pan-India Service', desc: 'We provide our products to all over the India .' },
   { icon: '💰', title: 'Flexible Financing', desc: 'EMI options, rental plans and government tender support available.' },
   { icon: '🤖', title: 'AI-Ready Systems', desc: 'All new systems are AI integration-ready with API support.' },

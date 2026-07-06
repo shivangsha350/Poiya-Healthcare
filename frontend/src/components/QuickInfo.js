@@ -9,8 +9,8 @@ const items = [
     ),
     title: '24/7 Support',
     sub: 'Always here when you need us most',
-    link: '1800-120-280-280',
-    href: 'tel:18001202880',
+    link: '+91 9414044499',
+    href: 'tel:9414044499',
   },
   {
     icon: (

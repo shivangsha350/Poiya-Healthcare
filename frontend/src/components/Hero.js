@@ -78,7 +78,7 @@ export default function Hero() {
             <div className="text-xs text-[#90CAE0] uppercase tracking-wide">Installations</div>
           </div>
           <div>
-            <div className="font-display text-2xl font-extrabold text-accent">16+</div>
+            <div className="font-display text-2xl font-extrabold text-accent">17+</div>
             <div className="text-xs text-[#90CAE0] uppercase tracking-wide">Years Experience</div>
           </div>
           <div>

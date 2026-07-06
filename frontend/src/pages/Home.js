@@ -102,11 +102,18 @@ export default function Home() {
   useEffect(() => {
     const fetchHomeProducts = async () => {
       try {
-        const res = await axios.get(`${API_BASE_URL}/products?limit=10`);
+        // Try fetching featured products first
+        const res = await axios.get(`${API_BASE_URL}/products?featured=true&limit=10`);
         if (res.data.success && res.data.products && res.data.products.length > 0) {
           setDisplayProducts(res.data.products);
         } else {
-          setDisplayProducts(staticProducts);
+          // Fallback to latest 10 products if no featured products are marked
+          const backupRes = await axios.get(`${API_BASE_URL}/products?limit=10`);
+          if (backupRes.data.success && backupRes.data.products && backupRes.data.products.length > 0) {
+            setDisplayProducts(backupRes.data.products);
+          } else {
+            setDisplayProducts(staticProducts);
+          }
         }
       } catch (err) {
         console.error("Error fetching homepage products:", err);

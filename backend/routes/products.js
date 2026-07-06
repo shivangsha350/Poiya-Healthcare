@@ -100,6 +100,10 @@ router.get('/', async (req, res) => {
       query.subcategory = req.query.subcategory;
     }
 
+    if (req.query.featured) {
+      query.featured = req.query.featured === 'true';
+    }
+
     const total = await Product.countDocuments(query);
     const products = await Product.find(query)
       .populate('category', 'name slug')
@@ -158,7 +162,7 @@ router.get('/:idOrSlug', async (req, res) => {
 // @access  Private/Admin
 router.post('/', protect, admin, uploadFields, async (req, res) => {
   try {
-    const { name, description, price, category, subcategory, stock, shortDescription, videoUrl, metaTitle, metaDescription } = req.body;
+    const { name, description, price, category, subcategory, stock, shortDescription, videoUrl, metaTitle, metaDescription, featured } = req.body;
 
     if (!name || !description || !category) {
       return res.status(400).json({ success: false, message: 'Required fields are missing' });
@@ -218,6 +222,7 @@ router.post('/', protect, admin, uploadFields, async (req, res) => {
       specifications,
       price: parseFloat(price) || 0,
       stock: parseInt(stock) || 0,
+      featured: featured === 'true' || featured === true,
       metaTitle: metaTitle || '',
       metaDescription: metaDescription || '',
     });
@@ -233,7 +238,7 @@ router.post('/', protect, admin, uploadFields, async (req, res) => {
 // @access  Private/Admin
 router.put('/:id', protect, admin, uploadFields, async (req, res) => {
   try {
-    const { name, description, price, category, subcategory, stock, shortDescription, videoUrl, metaTitle, metaDescription } = req.body;
+    const { name, description, price, category, subcategory, stock, shortDescription, videoUrl, metaTitle, metaDescription, featured } = req.body;
 
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -282,6 +287,10 @@ router.put('/:id', protect, admin, uploadFields, async (req, res) => {
     product.videoUrl = videoUrl !== undefined ? videoUrl : product.videoUrl;
     product.metaTitle = metaTitle !== undefined ? metaTitle : product.metaTitle;
     product.metaDescription = metaDescription !== undefined ? metaDescription : product.metaDescription;
+
+    if (featured !== undefined) {
+      product.featured = featured === 'true' || featured === true;
+    }
 
     if (price !== undefined) product.price = parseFloat(price) || 0;
     if (stock !== undefined) product.stock = parseInt(stock) || 0;

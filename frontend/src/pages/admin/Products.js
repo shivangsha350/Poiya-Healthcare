@@ -30,6 +30,7 @@ export default function Products() {
     description: '',
     price: '',
     stock: '',
+    featured: false,
     videoUrl: '',
     metaTitle: '',
     metaDescription: '',
@@ -182,6 +183,7 @@ export default function Products() {
       description: '',
       price: '',
       stock: '',
+      featured: false,
       videoUrl: '',
       metaTitle: '',
       metaDescription: '',
@@ -209,6 +211,7 @@ export default function Products() {
       description: product.description,
       price: product.price ? product.price.toString() : '',
       stock: product.stock ? product.stock.toString() : '0',
+      featured: product.featured || false,
       videoUrl: product.videoUrl || '',
       metaTitle: product.metaTitle || '',
       metaDescription: product.metaDescription || '',
@@ -243,6 +246,7 @@ export default function Products() {
     payload.append('description', formData.description);
     payload.append('price', formData.price || '0');
     payload.append('stock', formData.stock || '0');
+    payload.append('featured', formData.featured);
     payload.append('videoUrl', formData.videoUrl);
     payload.append('metaTitle', formData.metaTitle);
     payload.append('metaDescription', formData.metaDescription);
@@ -421,8 +425,13 @@ export default function Products() {
                           className="w-12 h-12 rounded-xl object-cover border border-[#d0e8f5]/30 dark:border-slate-800 bg-white"
                         />
                         <div className="min-w-0">
-                          <p className="font-semibold text-slate-800 dark:text-white truncate">
+                          <p className="font-semibold text-slate-800 dark:text-white flex items-center gap-1.5 truncate">
                             {product.name}
+                            {product.featured && (
+                              <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-wide bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                                ★ Home
+                              </span>
+                            )}
                           </p>
                           <p className="text-[10px] text-textmuted font-mono truncate mt-0.5" title={product.slug}>
                             slug: {product.slug}
@@ -516,8 +525,9 @@ export default function Products() {
 
       {/* Product Datasheet Modal Form */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm overflow-y-auto">
-          <div className="relative w-full max-w-2xl p-6 rounded-3xl bg-white dark:bg-[#0c1a30] border border-[#d0e8f5]/40 dark:border-slate-800 shadow-2xl max-h-[92vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/60 backdrop-blur-sm">
+          <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <div className="relative w-full max-w-2xl p-6 rounded-3xl bg-white dark:bg-[#0c1a30] border border-[#d0e8f5]/40 dark:border-slate-800 shadow-2xl my-8 text-left inline-block align-middle transform transition-all">
             
             {/* Modal Title */}
             <div className="flex justify-between items-center mb-6 border-b border-slate-100 dark:border-slate-800/50 pb-3">
@@ -642,6 +652,21 @@ export default function Products() {
                       className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2.5 px-3.5 text-sm focus:outline-none focus:border-accent"
                     />
                   </div>
+                </div>
+
+                {/* Featured checkbox */}
+                <div className="flex items-center gap-3 bg-amber-500/5 dark:bg-amber-500/10 border border-amber-500/15 rounded-2xl p-4.5">
+                  <input
+                    type="checkbox"
+                    name="featured"
+                    id="featured"
+                    checked={formData.featured}
+                    onChange={(e) => setFormData(prev => ({ ...prev, featured: e.target.checked }))}
+                    className="w-4.5 h-4.5 rounded text-amber-500 border-slate-350 focus:ring-amber-500 cursor-pointer"
+                  />
+                  <label htmlFor="featured" className="text-sm font-bold text-slate-700 dark:text-slate-200 cursor-pointer select-none">
+                    ⭐ Feature this product on the Home Page (Show in homepage top product grid)
+                  </label>
                 </div>
               </div>
 
@@ -965,6 +990,7 @@ export default function Products() {
               </div>
 
             </form>
+          </div>
           </div>
         </div>
       )}

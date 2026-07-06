@@ -18,6 +18,11 @@ const ProductSchema = new mongoose.Schema(
       ref: 'Category',
       required: [true, 'Please select a category'],
     },
+    subcategory: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category',
+      default: null,
+    },
     thumbnail: {
       type: String,
       default: '/uploads/default-product.png',

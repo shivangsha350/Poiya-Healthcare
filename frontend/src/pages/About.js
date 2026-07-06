@@ -7,13 +7,15 @@ import Logo from '../Assets/Logo.png';
 import AboutHeroImg from '../Assets/AboutUsHero.png';
 import ShivImg from '../Assets/Shiv.jpeg';
 import ReenaImg from '../Assets/Reena.jpeg';
+import DubeyImg from '../Assets/Dubey.png';
+import TimcyImg from '../Assets/Timcy.png';
 
 
 const team = [
-  { name: "Mr. Ramkumarr Dubey", role: "Founder & CEO", initial: "RD", image: Logo },
-  { name: "Mrs. Timcy Dubey", role: "Chief Managing Director", initial: "TD", image: ShivImg },
-{ name: "Mr. Shiv Dixit", role: "Head - Sales & Marketing", initial: "SD", image: ShivImg },
-{ name: "Mrs. Reena Sharma", role: "HR Operations", initial: "RS", image: ReenaImg },
+  { name: "Mr. Ramkumarr Dubey", role: "Founder & CEO", initial: "RD", image: DubeyImg, objectPos: "object-top" },
+  { name: "Mrs. Timcy Dubey", role: "Chief Managing Director", initial: "TD", image: TimcyImg, objectPos: "object-top" },
+  { name: "Mr. Shiv Dixit", role: "Head - Sales & Marketing", initial: "SD", image: ShivImg, objectPos: "object-center" },
+  { name: "Mrs. Reena Sharma", role: "HR Operations", initial: "RS", image: ReenaImg, objectPos: "object-center" },
 ];
 
 const pillars = [
@@ -151,7 +153,7 @@ export default function About() {
       <div className="relative w-full overflow-hidden">
         <img
           src={AboutHeroImg}
-          alt="Contact MediVision Healthcare — our team is ready to help you find the right radiology solution"
+          alt="Contact Poiya Healthcare — our team is ready to help you find the right radiology solution"
           className="w-full h-auto object-cover"
         />
         <div
@@ -268,7 +270,7 @@ export default function About() {
               <CornerBrackets size="w-4 h-4" color="border-accent" visibility="opacity-0 group-hover:opacity-100" />
               <div className="relative w-24 sm:w-28 h-24 sm:h-28 rounded-full bg-gradient-to-br from-mid to-accent text-white font-display text-xl sm:text-2xl font-extrabold flex items-center justify-center mx-auto mb-4 ring-4 ring-white/40 group-hover:ring-white/60 transition-all duration-300 overflow-hidden">
                 {member.image ? (
-                  <img src={member.image} alt={member.name} className="w-full h-full object-cover rounded-full" />
+                  <img src={member.image} alt={member.name} className={`w-full h-full object-cover ${member.objectPos || 'object-center'} rounded-full`} />
                 ) : (
                   member.initial
                 )}

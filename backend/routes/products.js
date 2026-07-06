@@ -96,9 +96,14 @@ router.get('/', async (req, res) => {
       query.category = req.query.category;
     }
 
+    if (req.query.subcategory && req.query.subcategory !== 'all') {
+      query.subcategory = req.query.subcategory;
+    }
+
     const total = await Product.countDocuments(query);
     const products = await Product.find(query)
-      .populate('category', 'name')
+      .populate('category', 'name slug')
+      .populate('subcategory', 'name slug')
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
@@ -127,9 +132,9 @@ router.get('/:idOrSlug', async (req, res) => {
     let product;
 
     if (isObjectId) {
-      product = await Product.findById(req.params.idOrSlug).populate('category', 'name');
+      product = await Product.findById(req.params.idOrSlug).populate('category', 'name slug').populate('subcategory', 'name slug');
     } else {
-      product = await Product.findOne({ slug: req.params.idOrSlug }).populate('category', 'name');
+      product = await Product.findOne({ slug: req.params.idOrSlug }).populate('category', 'name slug').populate('subcategory', 'name slug');
     }
 
     if (!product) {
@@ -153,7 +158,7 @@ router.get('/:idOrSlug', async (req, res) => {
 // @access  Private/Admin
 router.post('/', protect, admin, uploadFields, async (req, res) => {
   try {
-    const { name, description, price, category, stock, shortDescription, videoUrl, metaTitle, metaDescription } = req.body;
+    const { name, description, price, category, subcategory, stock, shortDescription, videoUrl, metaTitle, metaDescription } = req.body;
 
     if (!name || !description || !category) {
       return res.status(400).json({ success: false, message: 'Required fields are missing' });
@@ -163,6 +168,13 @@ router.post('/', protect, admin, uploadFields, async (req, res) => {
     const categoryExists = await Category.findById(category);
     if (!categoryExists) {
       return res.status(400).json({ success: false, message: 'Invalid category selection' });
+    }
+
+    if (subcategory) {
+      const subcategoryExists = await Category.findById(subcategory);
+      if (!subcategoryExists) {
+        return res.status(400).json({ success: false, message: 'Invalid subcategory selection' });
+      }
     }
 
     const calculatedSlug = req.body.slug ? slugify(req.body.slug) : slugify(name);
@@ -194,6 +206,7 @@ router.post('/', protect, admin, uploadFields, async (req, res) => {
       name,
       slug: calculatedSlug,
       category,
+      subcategory: subcategory || null,
       thumbnail: thumbnailPath,
       image: thumbnailPath, // alias
       gallery: galleryPaths,
@@ -220,7 +233,7 @@ router.post('/', protect, admin, uploadFields, async (req, res) => {
 // @access  Private/Admin
 router.put('/:id', protect, admin, uploadFields, async (req, res) => {
   try {
-    const { name, description, price, category, stock, shortDescription, videoUrl, metaTitle, metaDescription } = req.body;
+    const { name, description, price, category, subcategory, stock, shortDescription, videoUrl, metaTitle, metaDescription } = req.body;
 
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -233,6 +246,18 @@ router.put('/:id', protect, admin, uploadFields, async (req, res) => {
         return res.status(400).json({ success: false, message: 'Invalid category selection' });
       }
       product.category = category;
+    }
+
+    if (subcategory !== undefined) {
+      if (subcategory) {
+        const subcategoryExists = await Category.findById(subcategory);
+        if (!subcategoryExists) {
+          return res.status(400).json({ success: false, message: 'Invalid subcategory selection' });
+        }
+        product.subcategory = subcategory;
+      } else {
+        product.subcategory = null;
+      }
     }
 
     if (name && name !== product.name) {

@@ -6,7 +6,7 @@ import contactHeroImg from '../Assets/ContactHero.png';
 
 const cards = [
   { icon: '📞', title: 'Call Us', lines: ['+91 9414044499', '+91 6376949706'], link: 'tel:01414019750', linkTxt: 'Call Now' },
-  { icon: '✉️', title: 'Email Us', lines: ['poiyahealthcure99@gmail.com'], link: 'mailto:info@medivisionhealth.com', linkTxt: 'Send Email' },
+  { icon: '✉️', title: 'Email Us', lines: ['poiyahealthcure99@gmail.com'], link: 'mailto:poiyahealthcure99@gmail.com', linkTxt: 'Send Email' },
   { icon: '📍', title: 'Visit Us', lines: ['Office No. 301, Third & Zero Floor, Trimurti Prime Tower ,Niwaru Rd Jhotwara, Jaipur, Rajasthan - 302012'], link: 'https://www.google.com/maps/dir/?api=1&destination=26.96524995783401,75.72187827367408', linkTxt: 'Get Directions' },
   { icon: '🕐', title: 'Working Hours', lines: ['Mon – Sat: 9:00 AM – 7:00 PM', 'Support: 24/7'], link: 'tel:01414019750', linkTxt: 'Emergency Support' },
 ];
@@ -102,7 +102,7 @@ export default function Contact() {
       <div className="relative w-full overflow-hidden">
         <img
           src={contactHeroImg}
-          alt="Contact MediVision Healthcare — our team is ready to help you find the right radiology solution"
+          alt="Contact Poiya Healthcare — our team is ready to help you find the right radiology solution"
           className="w-full h-auto object-cover"
         />
 

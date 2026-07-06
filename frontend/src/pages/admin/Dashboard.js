@@ -83,7 +83,7 @@ export default function Dashboard() {
       {/* Welcome Banner */}
       <div>
         <h2 className="text-2xl font-extrabold font-display text-[#0A2E52] dark:text-white">
-          MediVision Operations Dashboard
+          Poiya Healthcare Operations Dashboard
         </h2>
         <p className="text-sm text-textmuted">
           Dynamic content management and inquiry database logs.

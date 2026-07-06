@@ -81,12 +81,12 @@ const messagesData = [
 
 
 const seoData = [
-  { pageName: 'Home', slug: '/', metaTitle: 'MediVision Healthcare | Advanced Medical Equipment & Imaging', metaDescription: 'Official distributor of Carestream Health and ERAY SMART portable X-Ray units in India. High quality diagnostic imaging systems and surgical C-arms.' },
-  { pageName: 'About', slug: '/about', metaTitle: 'About Us | MediVision Healthcare Group', metaDescription: 'Providing medical imaging products, pan-India maintenance services, and institutional procurement on GeM marketplace.' },
-  { pageName: 'Products', slug: '/products', metaTitle: 'Medical Equipment Catalog | MediVision Radiography', metaDescription: 'Browse handheld X-rays, mobile digital radiography scanners, flat panel detectors, and surgical fluoroscopic C-arms.' },
-  { pageName: 'Blogs', slug: '/blogs', metaTitle: 'Knowledge Hub & Insights | MediVision Healthcare', metaDescription: 'Expert radiology articles, industry tech updates, and medical imaging guides.' },
-  { pageName: 'Contact', slug: '/contact', metaTitle: 'Contact Our Radiology Experts | MediVision India', metaDescription: 'Speak with our technicians, request a customized C-Arm or portable X-Ray quotation, or request on-site servicing support.' },
-  { pageName: 'Career', slug: '/career', metaTitle: 'Join Our Team | Medical Imaging Careers', metaDescription: 'Grow your career as a medical equipment service engineer, sales lead, or service manager at MediVision.' },
+  { pageName: 'Home', slug: '/', metaTitle: 'Poiya Healthcare | Advanced Medical Equipment & Imaging', metaDescription: 'Official distributor of Carestream Health and ERAY SMART portable X-Ray units in India. High quality diagnostic imaging systems and surgical C-arms.' },
+  { pageName: 'About', slug: '/about', metaTitle: 'About Us | Poiya Healthcare Group', metaDescription: 'Providing medical imaging products, pan-India maintenance services, and institutional procurement on GeM marketplace.' },
+  { pageName: 'Products', slug: '/products', metaTitle: 'Medical Equipment Catalog | Poiya Healthcare Radiography', metaDescription: 'Browse handheld X-rays, mobile digital radiography scanners, flat panel detectors, and surgical fluoroscopic C-arms.' },
+  { pageName: 'Blogs', slug: '/blogs', metaTitle: 'Knowledge Hub & Insights | Poiya Healthcare', metaDescription: 'Expert radiology articles, industry tech updates, and medical imaging guides.' },
+  { pageName: 'Contact', slug: '/contact', metaTitle: 'Contact Our Radiology Experts | Poiya Healthcare India', metaDescription: 'Speak with our technicians, request a customized C-Arm or portable X-Ray quotation, or request on-site servicing support.' },
+  { pageName: 'Career', slug: '/career', metaTitle: 'Join Our Team | Medical Imaging Careers', metaDescription: 'Grow your career as a medical equipment service engineer, sales lead, or service manager at Poiya Healthcare.' },
 ];
 
 const seedDB = async () => {
@@ -106,13 +106,13 @@ const seedDB = async () => {
 
     // Create Admin User
     await User.create({
-      name: 'MediVision Administrator',
-      email: 'admin@medivision.com',
+      name: 'Poiya Healthcare Administrator',
+      email: 'admin@poiyahealthcare.com',
       password: 'AdminPassword123',
       role: 'admin',
       status: 'active',
     });
-    console.log('Admin account created: admin@medivision.com / AdminPassword123');
+    console.log('Admin account created: admin@poiyahealthcare.com / AdminPassword123');
 
     // Seed Categories
     const categories = await Category.create(categoriesData);
@@ -275,16 +275,16 @@ const seedDB = async () => {
 
     // Seed Settings
     await Settings.create({
-      websiteName: 'MediVision Healthcare',
-      contactEmail: 'info@medivision.com',
+      websiteName: 'Poiya Healthcare',
+      contactEmail: 'Poiyahealthcare99@gmail.com',
       contactPhone: '+1 (555) 019-2834',
       logo: '/uploads/default-product.png',
       address: '123 Health Ave, Suite 100, Medical City',
       socialLinks: {
-        facebook: 'https://facebook.com/medivision',
-        twitter: 'https://twitter.com/medivision',
-        linkedin: 'https://linkedin.com/company/medivision',
-        instagram: 'https://instagram.com/medivision',
+        facebook: 'https://facebook.com/poiyahealthcare',
+        twitter: 'https://twitter.com/poiyahealthcare',
+        linkedin: 'https://linkedin.com/company/poiyahealthcare',
+        instagram: 'https://instagram.com/poiyahealthcare',
       },
     });
     console.log('Seeded default website settings.');

@@ -41,7 +41,7 @@ export default function Login() {
             </svg>
           </div>
           <h2 className="mt-4 text-2xl font-black font-display tracking-wider">
-            Medi<span className="text-accent">Vision</span>
+            Poiya <span className="text-accent">Healthcare</span>
           </h2>
           <p className="text-xs text-textmuted mt-1 uppercase font-bold tracking-widest text-[#90E0EF]">
             Administrative Portal
@@ -65,7 +65,7 @@ export default function Login() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@medivision.com"
+                placeholder="admin@poiyahealthcare.com"
                 className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-10 pr-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-accent focus:bg-white/10 transition-all duration-200"
               />
             </div>

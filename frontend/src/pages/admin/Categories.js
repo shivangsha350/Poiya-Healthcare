@@ -16,6 +16,7 @@ export default function Categories() {
   const [slug, setSlug] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('Active');
+  const [parent, setParent] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -43,6 +44,7 @@ export default function Categories() {
     setSlug('');
     setDescription('');
     setStatus('Active');
+    setParent('');
     setImageFile(null);
     setImagePreview(null);
     setModalOpen(true);
@@ -54,6 +56,7 @@ export default function Categories() {
     setSlug(cat.slug || '');
     setDescription(cat.description || '');
     setStatus(cat.status || 'Active');
+    setParent(cat.parent?._id || cat.parent || '');
     setImageFile(null);
     setImagePreview(cat.image ? `${BACKEND_URL}${cat.image}` : null);
     setModalOpen(true);
@@ -76,6 +79,7 @@ export default function Categories() {
     payload.append('slug', slug);
     payload.append('description', description);
     payload.append('status', status);
+    payload.append('parent', parent);
     if (imageFile) {
       payload.append('image', imageFile);
     }
@@ -210,6 +214,11 @@ export default function Categories() {
                       <h4 className="text-lg font-extrabold font-display text-slate-800 dark:text-white group-hover:text-mid dark:group-hover:text-accent transition duration-200 truncate">
                         {cat.name}
                       </h4>
+                      {cat.parent && (
+                        <p className="text-[11px] text-[#00B4D8] font-bold mt-0.5">
+                          Subcategory of: {cat.parent.name || cat.parent}
+                        </p>
+                      )}
                       <p className="text-[10px] text-textmuted font-mono truncate mt-0.5">
                         slug: {cat.slug || cat.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
                       </p>
@@ -338,6 +347,27 @@ export default function Categories() {
                     className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2 px-3 text-sm focus:outline-none focus:border-accent"
                   />
                 </div>
+              </div>
+
+              {/* Parent Category Select */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                  Parent Category (Optional - select to make this a Subcategory)
+                </label>
+                <select
+                  value={parent}
+                  onChange={(e) => setParent(e.target.value)}
+                  className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2.5 px-3 text-sm focus:outline-none focus:border-accent"
+                >
+                  <option value="">None (Main Category)</option>
+                  {categories
+                    .filter((c) => !c.parent && (!editingCategory || c._id !== editingCategory._id))
+                    .map((c) => (
+                      <option key={c._id} value={c._id}>
+                        {c.name}
+                      </option>
+                    ))}
+                </select>
               </div>
 
               {/* Status */}

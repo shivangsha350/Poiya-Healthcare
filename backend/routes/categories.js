@@ -54,7 +54,7 @@ const slugify = (text) => {
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const categories = await Category.find().sort({ order: 1, name: 1 });
+    const categories = await Category.find().sort({ order: 1, name: 1 }).populate('parent', 'name slug');
     res.json({ success: true, categories });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -86,24 +86,25 @@ router.put('/reorder', protect, admin, async (req, res) => {
 // @route   POST /api/categories
 // @access  Private/Admin
 router.post('/', protect, admin, upload.single('image'), async (req, res) => {
-  const { name, description, status, order } = req.body;
+  const { name, description, status, order, parent } = req.body;
 
   if (!name) {
     return res.status(400).json({ success: false, message: 'Category name is required' });
   }
 
   try {
-    const categoryExists = await Category.findOne({ name });
+    // Check if category name exists under same parent
+    const categoryExists = await Category.findOne({ name, parent: parent || null });
     if (categoryExists) {
-      return res.status(400).json({ success: false, message: 'Category name already exists' });
+      return res.status(400).json({ success: false, message: 'Category name already exists under this parent' });
     }
 
     const calculatedSlug = req.body.slug ? slugify(req.body.slug) : slugify(name);
     
-    // Check slug uniqueness
-    const slugExists = await Category.findOne({ slug: calculatedSlug });
+    // Check slug uniqueness under same parent
+    const slugExists = await Category.findOne({ slug: calculatedSlug, parent: parent || null });
     if (slugExists) {
-      return res.status(400).json({ success: false, message: 'Category slug already exists, please choose a unique name' });
+      return res.status(400).json({ success: false, message: 'Category slug already exists under this parent, please choose a unique name' });
     }
 
     let imagePath = '';
@@ -118,9 +119,12 @@ router.post('/', protect, admin, upload.single('image'), async (req, res) => {
       description,
       status: status || 'Active',
       order: parseInt(order) || 0,
+      parent: parent || null,
     });
 
-    res.status(201).json({ success: true, category });
+    const populatedCategory = await Category.findById(category._id).populate('parent', 'name slug');
+
+    res.status(201).json({ success: true, category: populatedCategory });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
@@ -130,7 +134,7 @@ router.post('/', protect, admin, upload.single('image'), async (req, res) => {
 // @route   PUT /api/categories/:id
 // @access  Private/Admin
 router.put('/:id', protect, admin, upload.single('image'), async (req, res) => {
-  const { name, description, status, order } = req.body;
+  const { name, description, status, order, parent } = req.body;
 
   try {
     const category = await Category.findById(req.params.id);
@@ -140,9 +144,9 @@ router.put('/:id', protect, admin, upload.single('image'), async (req, res) => {
     }
 
     if (name && name !== category.name) {
-      const categoryExists = await Category.findOne({ name });
+      const categoryExists = await Category.findOne({ name, parent: parent !== undefined ? (parent || null) : category.parent });
       if (categoryExists) {
-        return res.status(400).json({ success: false, message: 'Category name already exists' });
+        return res.status(400).json({ success: false, message: 'Category name already exists under this parent' });
       }
       category.name = name;
     }
@@ -150,9 +154,9 @@ router.put('/:id', protect, admin, upload.single('image'), async (req, res) => {
     if (req.body.slug) {
       const calculatedSlug = slugify(req.body.slug);
       if (calculatedSlug !== category.slug) {
-        const slugExists = await Category.findOne({ slug: calculatedSlug });
+        const slugExists = await Category.findOne({ slug: calculatedSlug, parent: parent !== undefined ? (parent || null) : category.parent });
         if (slugExists) {
-          return res.status(400).json({ success: false, message: 'Category slug already exists' });
+          return res.status(400).json({ success: false, message: 'Category slug already exists under this parent' });
         }
         category.slug = calculatedSlug;
       }
@@ -163,6 +167,14 @@ router.put('/:id', protect, admin, upload.single('image'), async (req, res) => {
     category.description = description !== undefined ? description : category.description;
     category.status = status || category.status;
     category.order = order !== undefined ? parseInt(order) : category.order;
+    
+    if (parent !== undefined) {
+      // Prevent setting self as parent
+      if (parent && parent.toString() === category._id.toString()) {
+        return res.status(400).json({ success: false, message: 'A category cannot be its own parent' });
+      }
+      category.parent = parent || null;
+    }
 
     if (req.file) {
       // Delete old image file if it exists
@@ -176,7 +188,8 @@ router.put('/:id', protect, admin, upload.single('image'), async (req, res) => {
     }
 
     const updatedCategory = await category.save();
-    res.json({ success: true, category: updatedCategory });
+    const populatedCategory = await Category.findById(updatedCategory._id).populate('parent', 'name slug');
+    res.json({ success: true, category: populatedCategory });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
@@ -193,8 +206,19 @@ router.delete('/:id', protect, admin, async (req, res) => {
       return res.status(404).json({ success: false, message: 'Category not found' });
     }
 
-    // Check if category is used in products
-    const productCount = await Product.countDocuments({ category: req.params.id });
+    // Check if category has active subcategories
+    const subcategoryCount = await Category.countDocuments({ parent: req.params.id });
+    if (subcategoryCount > 0) {
+      return res.status(400).json({
+        success: false,
+        message: `Cannot delete category: ${subcategoryCount} subcategory(ies) are currently assigned under it.`,
+      });
+    }
+
+    // Check if category is used in products (either as main category or subcategory)
+    const productCount = await Product.countDocuments({
+      $or: [{ category: req.params.id }, { subcategory: req.params.id }]
+    });
     if (productCount > 0) {
       return res.status(400).json({
         success: false,

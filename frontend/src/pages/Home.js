@@ -259,7 +259,7 @@ hover:scale-110 cursor-pointer"/>
       {/* CTA Band */}
       {/* <div className="bg-gradient-to-br from-accent to-mid px-5 sm:px-10 py-12 md:py-16 text-center reveal">
         <h2 className="font-display text-2xl sm:text-[32px] font-extrabold text-white mb-3">
-          Expand Your Business with MediVision
+          Expand Your Business with Poiya Healthcare
         </h2>
         <p className="text-[#CAF0F8] text-[15px] mb-7 max-w-xl mx-auto">
           Become a distributor or partner for advanced radiology equipment —
@@ -414,7 +414,7 @@ hover:scale-110 cursor-pointer"/>
                 Join Our Team
               </h3>
               <p className="text-sm text-textmuted leading-relaxed mb-4.5">
-                At MediVision Healthcare, we empower passionate people to make a
+                At Poiya Healthcare, we empower passionate people to make a
                 real difference in patient care through cutting-edge imaging
                 technology.
               </p>

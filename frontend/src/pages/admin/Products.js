@@ -25,6 +25,7 @@ export default function Products() {
     name: '',
     slug: '',
     category: '',
+    subcategory: '',
     shortDescription: '',
     description: '',
     price: '',
@@ -175,7 +176,8 @@ export default function Products() {
     setFormData({
       name: '',
       slug: '',
-      category: categories[0]?._id || '',
+      category: categories.filter(c => !c.parent)[0]?._id || '',
+      subcategory: '',
       shortDescription: '',
       description: '',
       price: '',
@@ -202,6 +204,7 @@ export default function Products() {
       name: product.name,
       slug: product.slug,
       category: product.category?._id || product.category || '',
+      subcategory: product.subcategory?._id || product.subcategory || '',
       shortDescription: product.shortDescription || '',
       description: product.description,
       price: product.price ? product.price.toString() : '',
@@ -235,6 +238,7 @@ export default function Products() {
     payload.append('name', formData.name);
     payload.append('slug', formData.slug);
     payload.append('category', formData.category);
+    payload.append('subcategory', formData.subcategory || '');
     payload.append('shortDescription', formData.shortDescription);
     payload.append('description', formData.description);
     payload.append('price', formData.price || '0');
@@ -429,7 +433,14 @@ export default function Products() {
 
                     {/* Category */}
                     <td className="p-5 text-slate-650 dark:text-slate-350">
-                      {product.category?.name || 'Unassigned'}
+                      <div>
+                        {product.category?.name || 'Unassigned'}
+                        {product.subcategory && (
+                          <div className="text-xs text-[#00B4D8] font-semibold mt-0.5">
+                            › {product.subcategory.name || product.subcategory}
+                          </div>
+                        )}
+                      </div>
                     </td>
 
                     {/* Specifications Count */}
@@ -562,25 +573,50 @@ export default function Products() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="md:col-span-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
                       Category *
                     </label>
                     <select
                       name="category"
                       value={formData.category}
-                      onChange={handleInputChange}
+                      onChange={(e) => {
+                        handleInputChange(e);
+                        setFormData(prev => ({ ...prev, category: e.target.value, subcategory: '' }));
+                      }}
                       className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2.5 px-3.5 text-sm focus:outline-none focus:border-accent"
                     >
-                      {categories.map((c) => (
+                      <option value="">Select Category</option>
+                      {categories.filter(c => !c.parent).map((c) => (
                         <option key={c._id} value={c._id}>
                           {c.name}
                         </option>
                       ))}
                     </select>
                   </div>
-                  <div className="md:col-span-1">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                      Subcategory (Optional)
+                    </label>
+                    <select
+                      name="subcategory"
+                      value={formData.subcategory}
+                      onChange={handleInputChange}
+                      disabled={!formData.category}
+                      className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2.5 px-3.5 text-sm focus:outline-none focus:border-accent disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <option value="">None (Main Category Only)</option>
+                      {categories
+                        .filter((c) => c.parent?._id === formData.category || c.parent === formData.category)
+                        .map((c) => (
+                          <option key={c._id} value={c._id}>
+                            {c.name}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                  <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
                       Price ($ / ₹)
                     </label>
@@ -593,7 +629,7 @@ export default function Products() {
                       className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2.5 px-3.5 text-sm focus:outline-none focus:border-accent"
                     />
                   </div>
-                  <div className="md:col-span-1">
+                  <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
                       Stock Count
                     </label>

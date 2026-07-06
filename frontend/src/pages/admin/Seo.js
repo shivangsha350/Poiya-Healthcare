@@ -236,7 +236,7 @@ export default function Seo() {
                   name="metaTitle"
                   value={formData.metaTitle}
                   onChange={handleInputChange}
-                  placeholder="e.g. MediVision | Premium Diagnostic Solutions"
+                  placeholder="e.g. Poiya Healthcare | Premium Diagnostic Solutions"
                   className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2 px-3 text-sm focus:outline-none focus:border-accent"
                 />
               </div>

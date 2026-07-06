@@ -4,11 +4,11 @@ const SettingsSchema = new mongoose.Schema(
   {
     websiteName: {
       type: String,
-      default: 'MediVision Healthcare',
+      default: 'Poiya Healthcare',
     },
     contactEmail: {
       type: String,
-      default: 'info@medivision.com',
+      default: 'poiyahealthcure99@gmail.com',
     },
     contactPhone: {
       type: String,
@@ -23,10 +23,10 @@ const SettingsSchema = new mongoose.Schema(
       default: '123 Health Ave, Suite 100, Medical City',
     },
     socialLinks: {
-      facebook: { type: String, default: 'https://facebook.com/medivision' },
-      twitter: { type: String, default: 'https://twitter.com/medivision' },
-      linkedin: { type: String, default: 'https://linkedin.com/company/medivision' },
-      instagram: { type: String, default: 'https://instagram.com/medivision' },
+      facebook: { type: String, default: 'https://facebook.com/poiyahealthcare' },
+      twitter: { type: String, default: 'https://twitter.com/poiyahealthcare' },
+      linkedin: { type: String, default: 'https://linkedin.com/company/poiyahealthcare' },
+      instagram: { type: String, default: 'https://instagram.com/poiyahealthcare' },
     },
   },
   { timestamps: true }

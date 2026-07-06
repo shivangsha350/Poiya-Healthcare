@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { API_BASE_URL } from '../config';
+import { API_BASE_URL, BACKEND_URL } from '../config';
 import ProductCard from '../components/ProductCard';
 import ProductHeroImg from '../Assets/ProductHero.png';
 
@@ -42,10 +42,64 @@ function GridBackdrop({ id, className = '' }) {
   );
 }
 
+function SubcategoryCard({ image, name, description, onClick, index = 0 }) {
+  const displayImage = image ? `${BACKEND_URL}${image}` : null;
+  const tint = index % 2 === 0 ? 'bg-sky-50' : 'bg-emerald-50';
+
+  return (
+    <div
+      onClick={onClick}
+      className="group relative rounded-2xl border border-bordercol bg-white overflow-hidden transition-all duration-500 ease-out hover:scale-[1.03] hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,100,160,0.15)] hover:border-accent2 cursor-pointer flex flex-col justify-between"
+    >
+      <div className={`relative w-full h-40 ${tint} overflow-hidden flex items-center justify-center`}>
+        {displayImage ? (
+          <img
+            src={displayImage}
+            alt={name}
+            loading="lazy"
+            className="max-w-full max-h-full object-contain p-3 transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+        ) : (
+          <span className="text-3xl transition-transform duration-500 ease-out group-hover:scale-110">
+            📁
+          </span>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      </div>
+
+      <div className="px-4 py-4 text-center flex-1 flex flex-col justify-between">
+        <div>
+          <h3 className="font-bold text-[15px] text-primary leading-snug mb-1 line-clamp-1">
+            {name}
+          </h3>
+          <p className="text-xs text-textmuted leading-relaxed line-clamp-2 mb-3">
+            {description || 'Explore products in this category.'}
+          </p>
+        </div>
+        <div className="flex items-center justify-center gap-1.5 w-full rounded-xl border border-bordercol py-2 text-[12px] font-semibold text-mid transition-all duration-300 ease-out group-hover:bg-accent2 group-hover:border-accent2 group-hover:text-white mt-2">
+          Explore Products
+          <svg
+            viewBox="0 0 24 24"
+            className="w-3.5 h-3.5 transition-transform duration-300 ease-out group-hover:translate-x-1"
+            fill="none"
+          >
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+      </div>
+      
+      {/* Glowing ring highlight on hover */}
+      <div className="absolute inset-0 rounded-2xl ring-2 ring-accent2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+    </div>
+  );
+}
+
 export default function Products() {
   const [active, setActive] = useState('All');
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState(['All']);
+  const [rawCategories, setRawCategories] = useState([]);
+  const [activeSubcategory, setActiveSubcategory] = useState(null);
   const [loading, setLoading] = useState(true);
   const shouldReduceMotion = useReducedMotion();
 
@@ -62,8 +116,12 @@ export default function Products() {
           setProducts(prodRes.data.products || []);
         }
         if (catRes.data.success) {
-          const names = (catRes.data.categories || []).map((c) => c.name);
-          setCategories(['All', ...names]);
+          const rawCats = catRes.data.categories || [];
+          setRawCategories(rawCats);
+          const mainCatNames = rawCats
+            .filter((c) => !c.parent)
+            .map((c) => c.name);
+          setCategories(['All', ...mainCatNames]);
         }
       } catch (err) {
         console.error('Error fetching catalog data:', err);
@@ -75,12 +133,27 @@ export default function Products() {
     fetchDynamicData();
   }, []);
 
+  // Reset subcategory when tab changes
+  useEffect(() => {
+    setActiveSubcategory(null);
+  }, [active]);
+
+  const activeCategoryObj = rawCategories.find(c => c.name === active);
+  const activeSubcategories = activeCategoryObj
+    ? rawCategories.filter(c => c.parent && (c.parent._id === activeCategoryObj._id || c.parent === activeCategoryObj._id))
+    : [];
+
   const filtered = active === 'All'
     ? products
-    : products.filter((p) => {
-        const catName = p.category?.name || p.category;
-        return catName === active;
-      });
+    : activeSubcategory
+      ? products.filter((p) => {
+          const subCatId = p.subcategory?._id || p.subcategory;
+          return subCatId === activeSubcategory._id;
+        })
+      : products.filter((p) => {
+          const catName = p.category?.name || p.category;
+          return catName === active;
+        });
 
   return (
     <main className="bg-[#EAF6FB] min-h-screen antialiased">
@@ -143,6 +216,26 @@ export default function Products() {
                 </div>
               ))}
             </div>
+          ) : activeSubcategories.length > 0 && !activeSubcategory ? (
+            <div>
+              <div className="mb-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Select a subcategory to browse products:
+                </span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {activeSubcategories.map((sub, idx) => (
+                  <SubcategoryCard
+                    key={sub._id}
+                    image={sub.image}
+                    name={sub.name}
+                    description={sub.description}
+                    onClick={() => setActiveSubcategory(sub)}
+                    index={idx}
+                  />
+                ))}
+              </div>
+            </div>
           ) : filtered.length === 0 ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -152,29 +245,45 @@ export default function Products() {
               <p className="text-sm text-textmuted">No products available in this category.</p>
             </motion.div>
           ) : (
-            <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
-              <AnimatePresence mode="popLayout">
-                {filtered.map((p, idx) => (
-                  <motion.div
-                    key={p._id}
-                    layout
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3, delay: idx * 0.04 }}
+            <div>
+              {activeSubcategory && (
+                <div className="mb-6 flex items-center gap-2">
+                  <button
+                    onClick={() => setActiveSubcategory(null)}
+                    className="text-xs font-black uppercase tracking-wider text-mid hover:text-[#005f92] flex items-center gap-1 cursor-pointer bg-white border border-bordercol px-3.5 py-1.5 rounded-xl shadow-sm hover:shadow transition"
                   >
-                    <ProductCard
-                      _id={p._id}
-                      image={p.image}
-                      name={p.name}
-                      category={p.category?.name || p.category}
-                      slug={p.slug}
-                      index={idx}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
+                    ← Back to Subcategories
+                  </button>
+                  <span className="text-xs text-textmuted">/</span>
+                  <span className="text-xs font-bold text-slate-700 bg-slate-200/60 px-3 py-1 rounded-lg">
+                    {activeSubcategory.name}
+                  </span>
+                </div>
+              )}
+              <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+                <AnimatePresence mode="popLayout">
+                  {filtered.map((p, idx) => (
+                    <motion.div
+                      key={p._id}
+                      layout
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.3, delay: idx * 0.04 }}
+                    >
+                      <ProductCard
+                        _id={p._id}
+                        image={p.image}
+                        name={p.name}
+                        category={p.category?.name || p.category}
+                        slug={p.slug}
+                        index={idx}
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+            </div>
           )}
         </div>
       </section>

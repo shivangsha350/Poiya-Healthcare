@@ -138,13 +138,13 @@ export default function Career() {
     <main className="bg-[#EAF6FB] min-h-screen">
       {/* <div className="bg-gradient-to-br from-primary via-primary to-mid px-5 sm:px-10 py-12 md:py-[70px] text-center text-white">
         <div className="text-xs font-semibold tracking-[2px] uppercase text-accent mb-3">Join Our Team</div>
-        <h1 className="font-display text-2xl sm:text-3xl md:text-[42px] font-extrabold text-white mb-3">Build Your Career at MediVision</h1>
+        <h1 className="font-display text-2xl sm:text-3xl md:text-[42px] font-extrabold text-white mb-3">Build Your Career at Poiya Healthcare</h1>
         <p className="text-sm sm:text-base text-[#B0D8ED]">Be part of a mission-driven team transforming healthcare imaging across India</p>
       </div> */}
       <div className="relative w-full overflow-hidden">
         <img
           src={CareerHeroImg}
-          alt="Contact MediVision Healthcare — our team is ready to help you find the right radiology solution"
+          alt="Contact Poiya Healthcare — our team is ready to help you find the right radiology solution"
           className="w-full h-auto object-cover"
         />
       </div>
@@ -153,7 +153,7 @@ export default function Career() {
       <section className="px-5 sm:px-10 py-12 md:py-16">
         <div className="text-center mb-10 max-w-7xl mx-auto">
           <div className="text-xs font-semibold tracking-[2px] uppercase text-accent mb-2.5">Why Work With Us</div>
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-primary">Life at MediVision</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-primary">Life at Poiya Healthcare</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto">
           {perks.map((p, i) => (
@@ -293,7 +293,7 @@ export default function Career() {
                     <input name="employer" value={form.employer} onChange={handleChange} placeholder="Company name (optional)" className="w-full px-3.5 py-2.5 border-[1.5px] border-bordercol rounded-lg text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition" />
                   </div>
                   <div className="mb-3.5">
-                    <label className="block text-[13px] font-medium text-primary mb-1.5">Why do you want to join MediVision?</label>
+                    <label className="block text-[13px] font-medium text-primary mb-1.5">Why do you want to join Poiya Healthcare?</label>
                     <textarea name="motivation" value={form.motivation} onChange={handleChange} rows={3} placeholder="Tell us about your motivation..." className="w-full px-3.5 py-2.5 border-[1.5px] border-bordercol rounded-lg text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition resize-y" />
                   </div>
                   <div className="mb-4">
@@ -356,7 +356,7 @@ export default function Career() {
           </p>
 
           <motion.a
-            href="mailto:hr@medivisionhealth.com"
+            href="mailto:poiyahealthcure99@gmail.com"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             className="group bg-white text-cyan-700 px-8 py-3.5 rounded-xl font-extrabold text-sm uppercase tracking-wide hover:shadow-[0_10px_30px_rgba(255,255,255,0.4)] transition-shadow duration-200 inline-flex items-center gap-2"

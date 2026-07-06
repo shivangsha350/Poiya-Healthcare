@@ -5,14 +5,17 @@ const CategorySchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, 'Please add a category name'],
-      unique: true,
       trim: true,
     },
     slug: {
       type: String,
       required: [true, 'Please add a category slug'],
-      unique: true,
       trim: true,
+    },
+    parent: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category',
+      default: null,
     },
     image: {
       type: String,
@@ -36,3 +39,4 @@ const CategorySchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model('Category', CategorySchema);
+

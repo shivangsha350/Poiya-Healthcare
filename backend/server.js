@@ -37,7 +37,7 @@ app.use('/api/jobs', require('./routes/jobs'));
 
 // Base route for API check
 app.get('/', (req, res) => {
-  res.json({ message: 'MediVision Healthcare Admin API is running' });
+  res.json({ message: 'Poiya Healthcare Admin API is running' });
 });
 
 // Global error handler

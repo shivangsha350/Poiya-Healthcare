@@ -32,7 +32,7 @@ export default function Navbar() {
       <Link to="/" className="flex items-center gap-2.5">
         <img
           src={logo}
-          alt="MediVision Logo"
+          alt="Poiya Healthcare Logo"
           className="h-5 md:h-12 w-auto object-contain"
         />
         <span className="font-montserrat text-3xl font-extrabold text-primary">

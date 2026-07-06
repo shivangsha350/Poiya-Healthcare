@@ -3,7 +3,7 @@ import { api, useAdminAuth } from '../../context/AdminAuthContext';
 import { BACKEND_URL } from '../../config';
 
 export default function Settings() {
-  const { showToast } = useAdminAuth();
+  const { adminUser, showToast } = useAdminAuth();
 
   // Settings states
   const [settingsData, setSettingsData] = useState({
@@ -21,11 +21,18 @@ export default function Settings() {
   const [logoPreview, setLogoPreview] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Password reset states
+  // Profile / Password reset states
+  const [adminEmail, setAdminEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordLoading, setPasswordLoading] = useState(false);
+
+  useEffect(() => {
+    if (adminUser?.email) {
+      setAdminEmail(adminUser.email);
+    }
+  }, [adminUser]);
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -103,27 +110,41 @@ export default function Settings() {
     }
   };
 
-  const handlePasswordReset = async (e) => {
+  const handleSecurityUpdate = async (e) => {
     e.preventDefault();
-    if (!currentPassword || !newPassword) return;
+    
+    if (!adminEmail) {
+      showToast('Admin email is required', 'error');
+      return;
+    }
 
-    if (newPassword !== confirmPassword) {
+    const emailChanged = adminEmail !== adminUser?.email;
+    if ((emailChanged || newPassword) && !currentPassword) {
+      showToast('Please enter your current password to save email or password changes', 'error');
+      return;
+    }
+
+    if (newPassword && newPassword !== confirmPassword) {
       showToast('New passwords do not match', 'error');
       return;
     }
 
     setPasswordLoading(true);
     try {
-      const res = await api.put('/settings/password', { currentPassword, newPassword });
+      const res = await api.put('/auth/profile', {
+        email: adminEmail,
+        currentPassword: currentPassword || undefined,
+        newPassword: newPassword || undefined,
+      });
       if (res.data.success) {
-        showToast('Admin password changed successfully', 'success');
+        showToast('Credentials updated successfully. Please use new details for next login.', 'success');
         setCurrentPassword('');
         setNewPassword('');
         setConfirmPassword('');
       }
     } catch (err) {
       console.error(err);
-      showToast(err.response?.data?.message || 'Failed to change password', 'error');
+      showToast(err.response?.data?.message || 'Failed to update credentials', 'error');
     } finally {
       setPasswordLoading(false);
     }
@@ -327,8 +348,23 @@ export default function Settings() {
             <p className="text-xs text-textmuted">Change administrative login credentials.</p>
           </div>
 
-          <form onSubmit={handlePasswordReset} className="space-y-4">
+          <form onSubmit={handleSecurityUpdate} className="space-y-4">
             
+            {/* Admin Email */}
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                Admin Email Address
+              </label>
+              <input
+                type="email"
+                required
+                value={adminEmail}
+                onChange={(e) => setAdminEmail(e.target.value)}
+                placeholder="admin@poiyahealthcare.com"
+                className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2 px-3 text-sm focus:outline-none focus:border-accent"
+              />
+            </div>
+
             {/* Current Password */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
@@ -336,10 +372,9 @@ export default function Settings() {
               </label>
               <input
                 type="password"
-                required
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="Required to change email/password"
                 className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2 px-3 text-sm focus:outline-none focus:border-accent"
               />
             </div>
@@ -347,11 +382,10 @@ export default function Settings() {
             {/* New Password */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
-                New Password
+                New Password (Optional)
               </label>
               <input
                 type="password"
-                required
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="Min 6 characters"
@@ -362,14 +396,13 @@ export default function Settings() {
             {/* Confirm New Password */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
-                Confirm Password
+                Confirm New Password
               </label>
               <input
                 type="password"
-                required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm password"
+                placeholder="Confirm new password"
                 className="w-full bg-slate-100/50 dark:bg-slate-900/40 border border-[#d0e8f5]/40 dark:border-slate-800/50 rounded-xl py-2 px-3 text-sm focus:outline-none focus:border-accent"
               />
             </div>
@@ -383,7 +416,7 @@ export default function Settings() {
               {passwordLoading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mx-auto"></div>
               ) : (
-                'Update Password'
+                'Update Credentials'
               )}
             </button>
 

@@ -139,11 +139,11 @@ export default function AdminLayout({ children }) {
           <Link to="/admin/dashboard" className="flex items-center gap-2">
             <img
               src={logo}
-              alt="MediVision Logo"
+              alt="Poiya Healthcare Logo"
               className="h-10 md:h-12 w-auto object-contain"
             />
             <span className="font-display text-lg font-black text-[#0A2E52] dark:text-white">
-              Medi<span className="text-accent">Vision</span>
+              Poiya <span className="text-accent">Healthcare</span>
             </span>
             <span className="text-[10px] bg-accent/20 text-accent font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">
               Admin
@@ -188,7 +188,7 @@ export default function AdminLayout({ children }) {
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold truncate leading-tight">{adminUser?.name || 'Admin User'}</p>
-              <p className="text-xs text-textmuted truncate">{adminUser?.email || 'admin@medivision.com'}</p>
+              <p className="text-xs text-textmuted truncate">{adminUser?.email || 'admin@poiyahealthcare.com'}</p>
             </div>
           </div>
         </div>

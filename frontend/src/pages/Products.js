@@ -302,7 +302,7 @@ export default function Products() {
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
             Why Poiya
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">The Poiya Healthcure Advantages</h2>
+          <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight">The Poiya Healthcare Advantages</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto relative z-10">

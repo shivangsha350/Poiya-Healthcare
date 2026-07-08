@@ -21,7 +21,7 @@ export default function Footer() {
             </span>
           </Link>
           <p className="text-[13px] text-[#7BA0B8] leading-relaxed my-3.5 max-w-[280px]">
-            A leading manufacturer and exporter of sanitary napkins,Pants,Disposable undersheet. Serving hospitals, clinics and diagnostic centres across India and globally.
+We are a trusted supplier of advanced medical equipment, serving hospitals, and diagnostic centers across India and global markets. In addition, we are a leading manufacturer and exporter of sanitary pads, sanitary napkins, diaper pants, and disposable underpads, delivering high-quality healthcare and hygiene solutions.
           </p>
           <div className="flex gap-2.5">
             {[
@@ -81,7 +81,7 @@ export default function Footer() {
             <li><Link to="/contact" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Become a Partner</Link></li>
             <li>
               <a
-                href="/TERMS.pdf"
+                href="/TERM.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="text-[13px] text-[#7BA0B8] hover:text-white transition"
@@ -91,7 +91,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="/TERMS.pdf"
+                href="/TERM.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="text-[13px] text-[#7BA0B8] hover:text-white transition"
@@ -110,7 +110,7 @@ export default function Footer() {
         <p className="text-[13px] text-[#4A6580]">© {new Date().getFullYear()} Poiya Healthcare Pvt. Ltd. All rights reserved. Developed & Managed by bitebursttechnologies@gmail.com</p>
         <div className="flex gap-5">
           <a
-            href="/TERMS.pdf"
+            href="/TERM.pdf"
             target="_blank"
             rel="noreferrer"
             className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition"
@@ -118,7 +118,7 @@ export default function Footer() {
             Privacy Policy
           </a>
           <a
-            href="/TERMS.pdf"
+            href="/TERM.pdf"
             target="_blank"
             rel="noreferrer"
             className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition"

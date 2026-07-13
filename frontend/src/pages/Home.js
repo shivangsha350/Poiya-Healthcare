@@ -155,12 +155,12 @@ hover:scale-110 cursor-pointer"/>
             </h2>
 
             <p className="text-[15px] text-textmuted leading-relaxed mb-6">
-        What began in 2008 as Digital Photo Chemistry under Mr. Ramkumarr
-        Dubey has grown into Poiya Healthcare India Pvt. Ltd. — a trusted
-        supplier of diagnostic imaging, nephrology, pathology, and oncology
-        equipment to hospitals and diagnostic centres nationwide. Headquartered
+What began in 2008 as Digital Photo Chemistry under Mr. Ramkumarr
+        Dubey has grown into Poiya Healthcare(India) Pvt. Ltd. — a trusted
+        supplier of diagnostic imaging, Nephrology, Pathology, Oncology and otherr medical 
+        equipments to hospitals and diagnostic centres nationwide. Headquartered
         in Jaipur, Rajasthan, we continue to serve customers across India with
-        quality products and dependable service.
+        quality products and dependable services.
             </p>
 
             <ul className="flex flex-col gap-3 mb-7">

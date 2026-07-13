@@ -347,7 +347,7 @@ export default function Products() {
             Need a Custom Configuration?
           </motion.h2>
           <p className="text-[#CAF0F8] text-sm sm:text-base mb-10 leading-relaxed">
-            Our team can help design the right radiology setup for your facility size, budget and workflow.
+            Our team can help design the right equipment setup for your facility size, budget and workflow.
           </p>
 
           <div className="relative inline-block">

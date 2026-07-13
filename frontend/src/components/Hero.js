@@ -55,8 +55,7 @@ export default function Hero() {
           <span className="text-accent">Oncology Solutions</span>
         </h1>
         <p className="text-base text-[#B0D8ED] leading-relaxed mb-8">
-          Delivering cutting-edge, affordable CR, DR and X-Ray systems to
-          hospitals and diagnostic centres across India and beyond.
+          Delivering cutting-edge, affordable Medical Equipments to hospitals and diagnostic centers across India and beyond.
         </p>
         <div className="flex gap-3.5 flex-wrap mb-10 max-md:justify-center">
           <Link

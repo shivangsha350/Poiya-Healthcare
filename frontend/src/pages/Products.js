@@ -4,11 +4,11 @@ import axios from 'axios';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { API_BASE_URL, BACKEND_URL } from '../config';
 import ProductCard from '../components/ProductCard';
-import ProductHeroImg from '../Assets/ProductHero.png';
+import ProductHeroImg from '../Assets/ProductHero.webp';
 
 const advantages = [
   { icon: '🏆', title: 'Bain Medical Authorised', desc: 'Official distributor and service partner of Bain Medical in India.' },
-   { icon: '🇮🇳', title: 'Dealership', desc: 'We deal in Pre owned Siemenes Products like  CT Scan,MRI,CATHLAB ,Dialysis Machines and diagnostics equipments.' },
+   { icon: '🇮🇳', title: 'Dealership', desc: 'We deal in Pre owned Siemens Products like  CT Scan,MRI,CATHLAB ,Dialysis Machines and diagnostics equipments.' },
   { icon: '🔧', title: 'Pan-India Service', desc: 'We provide our products to all over the India .' },
   { icon: '💰', title: 'Flexible Financing', desc: 'EMI options, rental plans and government tender support available.' },
   { icon: '🤖', title: 'AI-Ready Systems', desc: 'All new systems are AI integration-ready with API support.' },

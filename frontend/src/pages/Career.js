@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion, useReducedMotion } from 'framer-motion';
 import { API_BASE_URL } from '../config';
-import CareerHeroImg from '../Assets/CareerHero.png';
+import CareerHeroImg from '../Assets/CareerHero.webp';
 
 const perks = [
   { icon: '💰', title: 'Competitive Salary', desc: 'Industry-leading compensation with performance bonuses.' },

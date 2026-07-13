@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './index.css';
 
@@ -6,29 +6,32 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppBtn from './components/WhatsAppBtn';
 
-import Home from './pages/Home';
-import About from './pages/About';
-import Products from './pages/Products';
-import Contact from './pages/Contact';
-import Career from './pages/Career';
-import ProductDetails from './pages/ProductDetails';
+// User-facing Pages (Lazy Loaded)
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Products = lazy(() => import('./pages/Products'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Career = lazy(() => import('./pages/Career'));
+const ProductDetails = lazy(() => import('./pages/ProductDetails'));
 
 // Admin Components & Pages
 import { AdminAuthProvider } from './context/AdminAuthContext';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import AdminLayout from './components/admin/AdminLayout';
-import AdminLogin from './pages/admin/Login';
-import AdminDashboard from './pages/admin/Dashboard';
-import AdminProducts from './pages/admin/Products';
-import AdminCategories from './pages/admin/Categories';
-import AdminOrders from './pages/admin/Orders';
-import AdminUsers from './pages/admin/Users';
-import AdminMessages from './pages/admin/Messages';
-import AdminSettings from './pages/admin/Settings';
-import AdminApplications from './pages/admin/Applications';
-import AdminMedia from './pages/admin/Media';
-import AdminSeo from './pages/admin/Seo';
-import AdminCareers from './pages/admin/Careers';
+
+// Admin Pages (Lazy Loaded)
+const AdminLogin = lazy(() => import('./pages/admin/Login'));
+const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'));
+const AdminProducts = lazy(() => import('./pages/admin/Products'));
+const AdminCategories = lazy(() => import('./pages/admin/Categories'));
+const AdminOrders = lazy(() => import('./pages/admin/Orders'));
+const AdminUsers = lazy(() => import('./pages/admin/Users'));
+const AdminMessages = lazy(() => import('./pages/admin/Messages'));
+const AdminSettings = lazy(() => import('./pages/admin/Settings'));
+const AdminApplications = lazy(() => import('./pages/admin/Applications'));
+const AdminMedia = lazy(() => import('./pages/admin/Media'));
+const AdminSeo = lazy(() => import('./pages/admin/Seo'));
+const AdminCareers = lazy(() => import('./pages/admin/Careers'));
 
 function AppContent() {
   const location = useLocation();
@@ -66,7 +69,12 @@ function AppContent() {
       {!isAdminRoute && <Navbar />}
       
       <div className="flex-1">
-        <Routes>
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-[60vh] bg-slate-50/50 dark:bg-transparent">
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-cyan-600"></div>
+          </div>
+        }>
+          <Routes>
           {/* User-facing Pages */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -199,6 +207,7 @@ function AppContent() {
             }
           />
         </Routes>
+        </Suspense>
       </div>
 
       {!isAdminRoute && <Footer />}

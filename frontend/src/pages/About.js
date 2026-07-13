@@ -4,11 +4,11 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useState } from 'react';
 import StatsBand from '../components/StatsBand';
 import Logo from '../Assets/Logo.png';
-import AboutHeroImg from '../Assets/AboutUsHero.png';
+import AboutHeroImg from '../Assets/AboutUsHero.webp';
 import ShivImg from '../Assets/Shiv.jpeg';
 import ReenaImg from '../Assets/Reena.jpeg';
-import DubeyImg from '../Assets/Dubey.png';
-import TimcyImg from '../Assets/Timcy.png';
+import DubeyImg from '../Assets/Dubey.webp';
+import TimcyImg from '../Assets/Timcy.webp';
 
 
 const team = [
@@ -19,22 +19,54 @@ const team = [
 ];
 
 const pillars = [
-  { icon: '🎯', title: 'Our Mission', desc: 'To deliver affordable, high-quality radiology and imaging solutions that empower healthcare professionals to provide the best possible patient outcomes.', highlight: true },
-  { icon: '🔭', title: 'Our Vision', desc: 'To become one of India\'s most trusted healthcare technology companies by delivering world-class medical equipment, advanced diagnostic solutions, and innovative healthcare products through quality, integrity, and continuous innovation.'},
-  { icon: '💡', title: 'Our Values', desc: 'Quality, integrity, innovation and customer-first service form the four pillars of everything we do at Poiya Healthcure.' },
+  { icon: '🎯', title: 'Our Mission', desc: 'To deliver affordable, high-quality Radiology , Nephrology , Oncology and other equipments that empower healthcare professionals to provide the best possible patient outcomes.', highlight: true },
+  { icon: '🔭', title: 'Our Vision', desc: 'To become one of India\'s most trusted healthcare technology companies by delivering world-class medical equipments, advanced diagnostic solutions, and innovative healthcare products through quality, integrity, and continuous innovation.'},
+  { icon: '💡', title: 'Our Values', desc: 'Quality, integrity, innovation and customer-first service form the four pillars of everything we do at Poiya Healthcare.' },
 ];
 
 const reviews = [
-  { text: "Poiya Healthcure transformed our radiology department. The Carestream systems they provided are exceptional, and the installation support was flawless.", name: "Dr. Arjun Mehta", role: "Radiologist, Apex Hospitals Delhi", initials: "AM" },
-  { text: "Outstanding service and top-quality imaging equipment. Our portable X-ray unit from Poiya has been a game changer for our remote healthcare camps.", name: "Dr. Sunita Rao", role: "Chief Medical Officer, Shubham Health NGO", initials: "SR" },
-  { text: "The AI-ready DR system we purchased works seamlessly with our reporting software. Poiya's team guided us through every step of the setup.", name: "Mr. Rakesh Gupta", role: "Hospital Administrator, JS MEMORIAL", initials: "RG" },
-  { text: "We've been working with Poiya for over 8 years. Their pan-India service support is unmatched — any issue is resolved within 24 hours.", name: "Dr. Priya Sharma", role: "Director, Shiv Diagnostic Centre", initials: "PS" },
-  { text: "The flexible EMI plan made it possible for our small clinic to upgrade to digital radiography. Truly a partner that understands our needs.", name: "Dr. Kiran Patel", role: "Owner, Ram Clinic Ahmedabad", initials: "KP" },
-  { text: "Poiya's GeM registration made the procurement process for our government hospital completely hassle-free. Professional and trustworthy.", name: "Mr. Anil Verma", role: "Purchase Officer, AIIMS Jodhpur", initials: "AV" },
-  { text: "The CR system quality is excellent and the training provided by Poiya's engineers was thorough. Highly recommend them to any healthcare facility.", name: "Dr. Meena Joshi", role: "Head of Radiology, Timcy Hospital", initials: "MJ" },
-  { text: "We ordered through the government tender process and Poiya made it incredibly smooth. Equipment arrived on time and in perfect condition.", name: "Dr. Suresh Nair", role: "Medical Superintendent, Shivang Hospital Lucknow", initials: "SN" },
-  { text: "The TB AI detection software integrated with our workflow perfectly. Poiya genuinely understands modern diagnostic needs.", name: "Dr. Fatima Sheikh", role: "Pulmonologist, Global Hospital Mumbai", initials: "FS" },
-  { text: "Make in India portable X-ray units from Poiya have been deployed across 12 of our camps. Durable, reliable, and cost-effective.", name: "Mr. Vijay Thakur", role: "Program Director, Yash Foundation", initials: "VT" },
+  { 
+    text: "Quality & Reliability, Poiya Healthcare has consistently delivered high-quality medical equipment with dependable performance. Their commitment to quality and timely service has made them a trusted healthcare partner", 
+    name: "Dr. Vinod Gupta", 
+    role: "Senior Consultant Physician", 
+    initials: "AM" 
+  },
+  { 
+    text: "Technical Support, The technical expertise and after-sales support provided by Poiya Healthcare are truly exceptional. Their team responds promptly and ensures minimal downtime for critical medical equipment", 
+    name: "Mr. Lokesh Sharma", 
+    role: "Biomedical Engineer, Rajasthan Hospital", 
+    initials: "SR" 
+  },
+  { 
+    text: "Customer Service, From installation to ongoing maintenance, the Poiya Healthcare team has demonstrated professionalism, transparency, and a strong commitment to patient care through reliable healthcare solutions", 
+    name: "Dr. RajKumar", 
+    role: "Doctor, SGN Hospital", 
+    initials: "SR" 
+  },
+  { 
+    text: "Trust & Partnership, We value our association with Poiya Healthcare for their ethical business practices, genuine products, and dedicated customer support. They have proven to be a reliable long-term healthcare partner.", 
+    name: "Dr. Priyas Tambi", 
+    role: "Nephrologist & Dialysis Specialist", 
+    initials: "RG" 
+  },
+  { 
+    text: "Innovation & Excellence, Poiya Healthcare combines advanced medical technology with outstanding service, enabling healthcare providers to deliver better patient outcomes with confidence", 
+    name: "Dr. MayanK Agarwal", 
+    role: "Hospital Administrator, NIMS Hospital", 
+    initials: "PS" 
+  },
+  { 
+    text: "In modern healthcare, technology is only as valuable as the people who stand behind it. Poiya Healthcare has earned our confidence through quality products, technical excellence, and an unwavering commitment to customer satisfaction", 
+    name: "Dr. Jitendra Jain", 
+    role: "Doctor, Mahaveer International Hospital Alwar", 
+    initials: "KP" 
+  },
+  { 
+    text: "We appreciate Poiya Healthcare\'s commitment to delivering quality healthcare solutions and would confidently recommend them to healthcare institutions seeking dependable medical equipment and excellent customer support", 
+    name: "Dr. Mahika Kaul", 
+    role: "Consultant Obstetrician & Gynecologist, Vaidehi Medical College & Hospital, Bengaluru", 
+    initials: "PS" 
+  }
 ];
 
 function CornerBrackets({ size = 'w-5 h-5', color = 'border-accent', visibility = 'opacity-100' }) {

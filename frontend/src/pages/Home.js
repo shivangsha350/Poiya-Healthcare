@@ -6,7 +6,7 @@ import Hero from "../components/Hero";
 import QuickInfo from "../components/QuickInfo";
 import StatsBand from "../components/StatsBand";
 import ProductCard from "../components/ProductCard";
-import aboutImage from "../Assets/About.png"; // <-- apni image ka naam yaha likho
+import aboutImage from "../Assets/About.webp"; // <-- apni image ka naam yaha likho
 
 const staticProducts = [
   {

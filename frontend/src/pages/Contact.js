@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { motion, useReducedMotion } from 'framer-motion';
 import { API_BASE_URL } from '../config';
-import contactHeroImg from '../Assets/ContactHero.png';
+import contactHeroImg from '../Assets/ContactHero.webp';
 
 const cards = [
   {
@@ -47,7 +47,7 @@ const cards = [
 ];
 
 const branches = [
-  { city: 'Jaipur', addr: 'Jhotwada Industrial Area, Jaipur - 302012' },
+  { city: 'Jaipur', addr: 'Jhotwara Industrial Area, Jaipur - 302012' },
 ];
 
 const PRODUCTS = [
@@ -59,6 +59,7 @@ const PRODUCTS = [
   'TB AI Software',
   'PACS / RIS',
   'Service / AMC',
+  
 ];
 
 function CornerBrackets({ size = 'w-4 h-4', color = 'border-accent', visibility = 'opacity-0 group-hover:opacity-100' }) {

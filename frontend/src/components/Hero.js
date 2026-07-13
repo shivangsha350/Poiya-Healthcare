@@ -50,13 +50,13 @@ export default function Hero() {
           🏥 Make in India Initiative
         </div>
         <h1 className="font-display text-[46px] max-md:text-[32px] font-extrabold text-white leading-[1.15] mb-4.5">
-          Advanced Radiology &amp;
+          Advanced Radiology, Nephrology &amp;
           <br />
-          <span className="text-accent">Imaging Solutions</span>
+          <span className="text-accent">Oncology Solutions</span>
         </h1>
         <p className="text-base text-[#B0D8ED] leading-relaxed mb-8">
           Delivering cutting-edge, affordable CR, DR and X-Ray systems to
-          hospitals, clinics and diagnostic centres across India and beyond.
+          hospitals and diagnostic centres across India and beyond.
         </p>
         <div className="flex gap-3.5 flex-wrap mb-10 max-md:justify-center">
           <Link

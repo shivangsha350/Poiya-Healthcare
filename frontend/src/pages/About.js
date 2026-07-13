@@ -21,7 +21,7 @@ const team = [
 const pillars = [
   { icon: '🎯', title: 'Our Mission', desc: 'To deliver affordable, high-quality Radiology , Nephrology , Oncology and other equipments that empower healthcare professionals to provide the best possible patient outcomes.', highlight: true },
   { icon: '🔭', title: 'Our Vision', desc: 'To become one of India\'s most trusted healthcare technology companies by delivering world-class medical equipments, advanced diagnostic solutions, and innovative healthcare products through quality, integrity, and continuous innovation.'},
-  { icon: '💡', title: 'Our Values', desc: 'Quality, integrity, innovation and customer-first service form the four pillars of everything we do at Poiya Healthcare.' },
+  { icon: '💡', title: 'Our Values', desc: '"Quality, integrity, innovation, and customer-first service form the four pillars of everything we do at Poiya Healthcare.' },
 ];
 
 const reviews = [
@@ -244,11 +244,11 @@ export default function About() {
 
       <p className="text-[15px] sm:text-base text-textmuted leading-relaxed mb-6">
         What began in 2008 as Digital Photo Chemistry under Mr. Ramkumarr
-        Dubey has grown into Poiya Healthcare India Pvt. Ltd. — a trusted
-        supplier of diagnostic imaging, nephrology, pathology, and oncology
-        equipment to hospitals and diagnostic centres nationwide. Headquartered
+        Dubey has grown into Poiya Healthcare(India) Pvt. Ltd. — a trusted
+        supplier of diagnostic imaging, Nephrology, Pathology, Oncology and otherr medical 
+        equipments to hospitals and diagnostic centres nationwide. Headquartered
         in Jaipur, Rajasthan, we continue to serve customers across India with
-        quality products and dependable service.
+        quality products and dependable services.
       </p>
 
       <ul className="flex flex-col gap-3 mb-7">
@@ -339,7 +339,7 @@ export default function About() {
             Ready to Work with Us?
           </motion.h2>
           <p className="text-[#CAF0F8] text-sm sm:text-base mb-9 max-w-xl mx-auto">
-            Explore our product range or get in touch to discuss your imaging needs.
+            Explore our product range or get in touch to discuss your needs.
           </p>
           <div className="flex gap-3.5 justify-center flex-wrap">
             <Link

@@ -91,7 +91,7 @@ We are a trusted supplier of advanced medical equipment, serving hospitals, and 
             </li>
             <li>
               <a
-                href="/TERM.pdf"
+                href="/TERM(1).pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="text-[13px] text-[#7BA0B8] hover:text-white transition"
@@ -118,7 +118,7 @@ We are a trusted supplier of advanced medical equipment, serving hospitals, and 
             Privacy Policy
           </a>
           <a
-            href="/TERM.pdf"
+            href="/TERM(1).pdf"
             target="_blank"
             rel="noreferrer"
             className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition"

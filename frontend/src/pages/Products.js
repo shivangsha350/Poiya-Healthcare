@@ -7,8 +7,17 @@ import ProductCard from '../components/ProductCard';
 import ProductHeroImg from '../Assets/ProductHero.webp';
 
 const advantages = [
-  { icon: '🏆', title: 'Bain Medical Authorised', desc: 'Official distributor and service partner of Bain Medical in India.' },
-   { icon: '🇮🇳', title: 'Dealership', desc: 'We deal in Pre owned Siemens Products like  CT Scan,MRI,CATHLAB ,Dialysis Machines and diagnostics equipments.' },
+{ icon: '🏆', title: 'Bain Medical Authorised', desc: 'Official distributor and service partner of Bain Medical.' },
+   { icon: (
+     <svg width="28" height="20" viewBox="0 0 900 600" className="rounded-sm shadow-sm border border-white/10" style={{ display: 'block' }}>
+       <rect width="900" height="200" fill="#FF9933" />
+       <rect y="200" width="900" height="200" fill="#FFFFFF" />
+       <rect y="400" width="900" height="200" fill="#128807" />
+       <circle cx="450" cy="300" r="80" fill="none" stroke="#000080" strokeWidth="10" />
+       <circle cx="450" cy="300" r="20" fill="#000080" />
+       <path d="M450 220v160M370 300h160M393.4 243.4l113.2 113.2M393.4 356.6l113.2-113.2" stroke="#000080" strokeWidth="8" />
+     </svg>
+   ), title: 'Deals IN', desc: '"We specialize in pre-owned CT scanners, MRI machines, and Cath Labs. Additionally, we are an authorized dealer of brand-new oncology, pathology, and radiology equipment.' },
   { icon: '🔧', title: 'Pan-India Service', desc: 'We provide our products to all over the India .' },
   { icon: '💰', title: 'Flexible Financing', desc: 'EMI options, rental plans and government tender support available.' },
   { icon: '🤖', title: 'AI-Ready Systems', desc: 'All new systems are AI integration-ready with API support.' },

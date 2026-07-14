@@ -33,7 +33,7 @@ export default function Navbar() {
     >
       <Link href="/" className="flex items-center gap-2.5">
         <img
-          src={logo}
+          src={logo.src || logo}
           alt="Poiya Healthcare Logo"
           className="h-5 md:h-12 w-auto object-contain"
         />

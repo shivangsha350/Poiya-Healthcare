@@ -140,7 +140,7 @@ export default function AdminLayout({ children }) {
         <div className="h-16 px-6 border-b border-[#d0e8f5]/40 dark:border-slate-800/40 flex items-center justify-between">
           <Link href="/admin/dashboard" className="flex items-center gap-2">
             <img
-              src={logo}
+              src={logo.src || logo}
               alt="Poiya Healthcare Logo"
               className="h-10 md:h-12 w-auto object-contain"
             />

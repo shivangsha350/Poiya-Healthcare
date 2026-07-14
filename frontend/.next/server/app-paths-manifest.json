@@ -1,22 +1,9 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/(public)/about/page": "app/(public)/about/page.js",
-  "/(public)/products/[slug]/page": "app/(public)/products/[slug]/page.js",
-  "/(public)/page": "app/(public)/page.js",
-  "/admin/applications/page": "app/admin/applications/page.js",
-  "/admin/categories/page": "app/admin/categories/page.js",
-  "/(public)/contact/page": "app/(public)/contact/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/careers/page": "app/admin/careers/page.js",
-  "/admin/messages/page": "app/admin/messages/page.js",
-  "/admin/login/page": "app/admin/login/page.js",
-  "/(public)/products/page": "app/(public)/products/page.js",
-  "/admin/media/page": "app/admin/media/page.js",
-  "/admin/orders/page": "app/admin/orders/page.js",
   "/admin/page": "app/admin/page.js",
-  "/admin/products/page": "app/admin/products/page.js",
+  "/(public)/page": "app/(public)/page.js",
   "/(public)/career/page": "app/(public)/career/page.js",
-  "/admin/seo/page": "app/admin/seo/page.js",
-  "/admin/settings/page": "app/admin/settings/page.js",
-  "/admin/users/page": "app/admin/users/page.js"
+  "/(public)/products/page": "app/(public)/products/page.js",
+  "/admin/login/page": "app/admin/login/page.js"
 }

@@ -11,7 +11,7 @@ export default function Footer() {
           <Link href="/" className="flex items-center gap-2.5">
             <div className="w-[38px] h-[38px] rounded-[9px] overflow-hidden flex items-center justify-center">
               <img
-                src={productIcon}
+                src={productIcon.src || productIcon}
                 alt="Product Icon"
                 className="w-full h-full object-cover"
               />

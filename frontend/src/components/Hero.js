@@ -26,7 +26,7 @@ export default function Hero() {
       {SLIDES.map((src, i) => (
         <img
           key={i}
-          src={src}
+          src={src.src || src}
           alt={`slide-${i + 1}`}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             i === current ? "opacity-100" : "opacity-0"

@@ -1,5 +1,6 @@
 import '../index.css';
 import { AdminAuthProvider } from '../context/AdminAuthContext';
+import ScrollReveal from '../components/ScrollReveal';
 
 export const metadata = {
   title: 'MediVision - Modern Healthcare Services',
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased">
         <AdminAuthProvider>
+          <ScrollReveal />
           {children}
         </AdminAuthProvider>
       </body>

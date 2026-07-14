@@ -1,13 +1,15 @@
+"use client";
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAdminAuth } from '../../context/AdminAuthContext';
 import logo from '../../Assets/Logo.png';
 
 export default function AdminLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { adminUser, logout, theme, toggleTheme, toasts, removeToast } = useAdminAuth();
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const menuItems = [
     {
@@ -115,11 +117,11 @@ export default function AdminLayout({ children }) {
 
   const handleLogout = () => {
     logout();
-    navigate('/admin/login');
+    router.push('/admin/login');
   };
 
   const getPageTitle = () => {
-    const matched = menuItems.find((item) => item.path === location.pathname);
+    const matched = menuItems.find((item) => item.path === pathname);
     return matched ? matched.label : 'Admin Panel';
   };
 
@@ -136,7 +138,7 @@ export default function AdminLayout({ children }) {
         
         {/* Sidebar Header */}
         <div className="h-16 px-6 border-b border-[#d0e8f5]/40 dark:border-slate-800/40 flex items-center justify-between">
-          <Link to="/admin/dashboard" className="flex items-center gap-2">
+          <Link href="/admin/dashboard" className="flex items-center gap-2">
             <img
               src={logo}
               alt="Poiya Healthcare Logo"
@@ -159,11 +161,11 @@ export default function AdminLayout({ children }) {
         {/* Sidebar Nav Links */}
         <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
           {menuItems.map((item) => {
-            const active = location.pathname === item.path;
+            const active = pathname === item.path;
             return (
               <Link
                 key={item.path}
-                to={item.path}
+                href={item.path}
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition duration-200 border group ${
                   active

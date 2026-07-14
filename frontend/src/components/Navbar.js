@@ -1,11 +1,13 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import logo from "../Assets/Logo.png";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -13,13 +15,13 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => pathname === path;
 
   const links = [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About Us" },
-    { to: "/products", label: "Products" },
-    { to: "/career", label: "Career" },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About Us" },
+    { href: "/products", label: "Products" },
+    { href: "/career", label: "Career" },
   ];
 
   return (
@@ -29,7 +31,7 @@ export default function Navbar() {
         : "shadow-[0_2px_12px_rgba(0,100,160,0.07)]"
         } max-md:px-5`}
     >
-      <Link to="/" className="flex items-center gap-2.5">
+      <Link href="/" className="flex items-center gap-2.5">
         <img
           src={logo}
           alt="Poiya Healthcare Logo"
@@ -55,16 +57,16 @@ export default function Navbar() {
           } md:flex flex-col md:flex-row gap-3 md:gap-6 list-none items-center
         md:static absolute top-[68px] left-0 right-0 bg-cyan-100 p-5 md:p-0 shadow-lg md:shadow-none`}
       >
-        {links.map(({ to, label }) => (
-          <li key={to}>
+        {links.map(({ href, label }) => (
+          <li key={href}>
             <Link
-              to={to}
+              href={href}
               onClick={() => setMenuOpen(false)}
-              className={`text-sm font-medium py-1.5 md:py-0 border-b-2 transition ${isActive(to)
+              className={`text-sm font-medium py-1.5 md:py-0 border-b-2 transition ${isActive(href)
                 ? "text-mid border-accent"
                 : "text-textDark border-transparent hover:text-mid hover:border-accent"
                 }`}
-              style={{ color: isActive(to) ? undefined : "#0A2E52" }}
+              style={{ color: isActive(href) ? undefined : "#0A2E52" }}
             >
               {label}
             </Link>
@@ -72,7 +74,7 @@ export default function Navbar() {
         ))}
         <li>
           <Link
-            to="/contact"
+            href="/contact"
             onClick={() => setMenuOpen(false)}
             className="bg-cyan-500 text-white px-5 py-2 rounded-lg font-semibold text-sm hover:bg-cyan-800 transition inline-block"
           >

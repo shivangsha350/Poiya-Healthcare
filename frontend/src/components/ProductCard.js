@@ -1,5 +1,6 @@
+"use client";
 import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { BACKEND_URL } from '../config';
 
 export default function ProductCard({ icon, image, name, slug, _id, index = 0 }) {
@@ -75,7 +76,7 @@ export default function ProductCard({ icon, image, name, slug, _id, index = 0 })
       {/* View Details button */}
       <div className="px-4 pb-4">
         <Link
-          to={`/products/${slug}`}
+          href={`/products/${slug}`}
           className="flex items-center justify-center gap-1.5 w-full rounded-xl border border-bordercol
                      py-2.5 text-[13px] font-semibold text-mid
                      transition-all duration-300 ease-out

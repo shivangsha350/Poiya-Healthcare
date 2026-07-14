@@ -1,7 +1,7 @@
 // Centralized API and backend configuration
 const getApiUrl = () => {
-  if (process.env.REACT_APP_API_URL) {
-    return process.env.REACT_APP_API_URL;
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL;
   }
   // Automatically connect to localhost if running in local development
   if (

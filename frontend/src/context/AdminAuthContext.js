@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../config';
@@ -10,10 +11,10 @@ export const api = axios.create({
 });
 
 export const AdminAuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem('admin_token') || null);
+  const [token, setToken] = useState(() => typeof window !== 'undefined' ? localStorage.getItem('admin_token') : null);
   const [adminUser, setAdminUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [theme, setTheme] = useState(localStorage.getItem('admin_theme') || 'dark');
+  const [theme, setTheme] = useState(() => typeof window !== 'undefined' ? (localStorage.getItem('admin_theme') || 'dark') : 'dark');
   const [toasts, setToasts] = useState([]);
 
   // Setup Axios interceptors

@@ -1,11 +1,19 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+"use client";
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAdminAuth } from '../../context/AdminAuthContext';
 
 export default function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAdminAuth();
+  const router = useRouter();
 
-  if (loading) {
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      router.push('/admin/login');
+    }
+  }, [loading, isAuthenticated, router]);
+
+  if (loading || !isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#071329] text-white">
         <div className="relative flex flex-col items-center">
@@ -22,10 +30,6 @@ export default function ProtectedRoute({ children }) {
         </div>
       </div>
     );
-  }
-
-  if (!isAuthenticated) {
-    return <Navigate to="/admin/login" replace />;
   }
 
   return children;

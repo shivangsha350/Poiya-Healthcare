@@ -1,5 +1,6 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 import Hero1 from "../Assets/Hero section/Hero1.jpg";
 import Hero2 from "../Assets/Hero section/Hero2.jpg";
@@ -59,13 +60,13 @@ export default function Hero() {
         </p>
         <div className="flex gap-3.5 flex-wrap mb-10 max-md:justify-center">
           <Link
-            to="/products"
+            href="/products"
             className="bg-cta text-white px-7 py-3 rounded-[9px] font-semibold text-sm hover:bg-ctadark hover:-translate-y-0.5 transition inline-block"
           >
             Explore Products
           </Link>
           <Link
-            to="/contact"
+            href="/contact"
             className="bg-transparent text-white px-7 py-3 rounded-[9px] font-semibold text-sm border-2 border-white/35 hover:bg-white/10 transition inline-block"
           >
             Request a Demo

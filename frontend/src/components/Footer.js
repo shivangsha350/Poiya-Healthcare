@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import productIcon from "../Assets/Logo.png";
 
 export default function Footer() {
@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-8 md:gap-10 mb-10 md:mb-12">
         {/* Brand */}
         <div className="sm:col-span-2 lg:col-span-1">
-          <Link to="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5">
             <div className="w-[38px] h-[38px] rounded-[9px] overflow-hidden flex items-center justify-center">
               <img
                 src={productIcon}
@@ -84,7 +84,7 @@ We are a trusted supplier of advanced medical equipment, serving hospitals, and 
           <ul className="flex flex-col gap-2.5">
             {['CT Scanner (Pre owned)', 'MRI  (Pre owned)', 'CATH LAB (Pre owned)', 'Handheld , Mobile , Fixed  X-RAY', 'Computed Radiography & Printer', 'Digital Radiography & Printers', 'C-ARM', 'AI Radiology Software', 'Dialysis Machine & its Consumables', 'Oncology Screener Devices', 'IVD Products'].map((item) => (
               <li key={item}>
-                <Link to="/products" className="text-[13px] text-[#7BA0B8] hover:text-white transition">
+                <Link href="/products" className="text-[13px] text-[#7BA0B8] hover:text-white transition">
                   {item}
                 </Link>
               </li>
@@ -98,7 +98,7 @@ We are a trusted supplier of advanced medical equipment, serving hospitals, and 
           <ul className="flex flex-col gap-2.5">
             {['Medical Imaging', 'Warranty & AMC', 'Digital Solutions', 'Financing Options', 'Remote Support', 'Installation'].map((item) => (
               <li key={item}>
-                <Link to="/services" className="text-[13px] text-[#7BA0B8] hover:text-white transition">
+                <Link href="/services" className="text-[13px] text-[#7BA0B8] hover:text-white transition">
                   {item}
                 </Link>
               </li>
@@ -110,10 +110,10 @@ We are a trusted supplier of advanced medical equipment, serving hospitals, and 
         <div>
           <h4 className="text-xs font-semibold uppercase tracking-[1.5px] text-[#90CAE0] mb-4">Company</h4>
           <ul className="flex flex-col gap-2.5">
-            <li><Link to="/about" className="text-[13px] text-[#7BA0B8] hover:text-white transition">About Us</Link></li>
-            <li><Link to="/career" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Career</Link></li>
-            <li><Link to="/contact" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Contact Us</Link></li>
-            <li><Link to="/contact" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Become a Partner</Link></li>
+            <li><Link href="/about" className="text-[13px] text-[#7BA0B8] hover:text-white transition">About Us</Link></li>
+            <li><Link href="/career" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Career</Link></li>
+            <li><Link href="/contact" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Contact Us</Link></li>
+            <li><Link href="/contact" className="text-[13px] text-[#7BA0B8] hover:text-white transition">Become a Partner</Link></li>
             <li>
               <a
                 href="/TERM.pdf"
@@ -160,7 +160,7 @@ We are a trusted supplier of advanced medical equipment, serving hospitals, and 
           >
             Terms & Conditions
           </a>
-          <Link to="/sitemap" className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition">Sitemap</Link>
+          <Link href="/sitemap" className="text-xs text-[#4A6580] hover:text-[#90CAE0] transition">Sitemap</Link>
         </div>
       </div>
     </footer >

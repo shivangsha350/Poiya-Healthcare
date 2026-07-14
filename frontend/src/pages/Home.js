@@ -213,9 +213,7 @@ What began in 2008 as Digital Photo Chemistry under Mr. Ramkumarr
               </h2>
 
               <p className="max-w-2xl mx-auto text-gray-600 leading-7">
-                From portable handheld devices to advanced Digital Radiography systems,
-                we provide reliable imaging solutions for hospitals, diagnostic centres,
-                and healthcare professionals.
+                From portable handheld devices to advanced Digital Radiography systems, we provide reliable medical imaging solutions for hospitals, diagnostic centres, and healthcare professionals. Complementing our imaging expertise, we also offer advanced nephrology and oncology equipment and consumables, delivering complete healthcare solutions with innovation, precision, and trust.
               </p>
             </div>
 

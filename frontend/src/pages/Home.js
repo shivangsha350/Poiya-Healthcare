@@ -151,7 +151,7 @@ hover:scale-110 cursor-pointer"/>
             </div>
 
             <h2 className="font-display text-xl sm:text-3xl font-semibold text-primary mb-3.5 leading-snug">
-              A Trusted Leader in Healthcare &amp; Industry
+              A Trusted Leader in Healthcare Industry
             </h2>
 
             <p className="text-[15px] text-textmuted leading-relaxed mb-6">

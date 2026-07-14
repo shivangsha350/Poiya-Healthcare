@@ -228,15 +228,15 @@ export default function Dashboard() {
           </div>
 
           <div className="space-y-3 flex-1 flex flex-col justify-center">
-            <Link to="/admin/products" className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-mid/30 bg-slate-50/50 hover:bg-slate-50 dark:border-slate-850 dark:hover:bg-[#0c1a30]/30 transition text-xs font-semibold text-primary">
+            <Link href="/admin/products" className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-mid/30 bg-slate-50/50 hover:bg-slate-50 dark:border-slate-850 dark:hover:bg-[#0c1a30]/30 transition text-xs font-semibold text-primary">
               <span>Catalog Products</span>
               <span>→</span>
             </Link>
-            <Link to="/admin/applications" className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-mid/30 bg-slate-50/50 hover:bg-slate-50 dark:border-slate-850 dark:hover:bg-[#0c1a30]/30 transition text-xs font-semibold text-primary">
+            <Link href="/admin/applications" className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-mid/30 bg-slate-50/50 hover:bg-slate-50 dark:border-slate-850 dark:hover:bg-[#0c1a30]/30 transition text-xs font-semibold text-primary">
               <span>Manage Applications</span>
               <span>→</span>
             </Link>
-            <Link to="/admin/media" className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-mid/30 bg-slate-50/50 hover:bg-slate-50 dark:border-slate-850 dark:hover:bg-[#0c1a30]/30 transition text-xs font-semibold text-primary">
+            <Link href="/admin/media" className="flex items-center justify-between p-3 rounded-xl border border-slate-100 hover:border-mid/30 bg-slate-50/50 hover:bg-slate-50 dark:border-slate-850 dark:hover:bg-[#0c1a30]/30 transition text-xs font-semibold text-primary">
               <span>Media Library Manager</span>
               <span>→</span>
             </Link>
@@ -303,7 +303,7 @@ export default function Dashboard() {
               <h5 className="font-extrabold text-primary text-sm">Need to contact client?</h5>
               <p className="text-xs text-textmuted mt-1 leading-relaxed">You have got {stats.totalInquiries} total inquiry submissions in the inbox list.</p>
             </div>
-            <Link to="/admin/messages" className="bg-mid hover:opacity-95 text-white py-2 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer inline-block mt-2">
+            <Link href="/admin/messages" className="bg-mid hover:opacity-95 text-white py-2 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer inline-block mt-2">
               View Inquiries
             </Link>
           </div>

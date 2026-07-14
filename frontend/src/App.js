@@ -53,14 +53,30 @@ function AppContent() {
       });
     }, observerOptions);
 
-    const timeoutId = setTimeout(() => {
-      const revealElements = document.querySelectorAll('.reveal');
-      revealElements.forEach((el) => observer.observe(el));
-    }, 100);
+    const observeElements = () => {
+      const revealElements = document.querySelectorAll('.reveal:not([data-observed])');
+      revealElements.forEach((el) => {
+        el.setAttribute('data-observed', 'true');
+        observer.observe(el);
+      });
+    };
+
+    // Initial observation
+    observeElements();
+
+    // Setup MutationObserver to watch for newly loaded or lazy-loaded elements
+    const mutationObserver = new MutationObserver(() => {
+      observeElements();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
 
     return () => {
-      clearTimeout(timeoutId);
       observer.disconnect();
+      mutationObserver.disconnect();
     };
   }, [location.pathname]);
 
